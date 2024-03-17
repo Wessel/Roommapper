@@ -1,0 +1,60 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Console/1.0.0": {
+        "dependencies": {
+          "LibParse": "1.0.0",
+          "LibServer": "1.0.0"
+        },
+        "runtime": {
+          "Console.dll": {}
+        }
+      },
+      "LibHttp/1.0.0": {
+        "runtime": {
+          "LibHttp.dll": {}
+        }
+      },
+      "LibParse/1.0.0": {
+        "runtime": {
+          "LibParse.dll": {}
+        }
+      },
+      "LibServer/1.0.0": {
+        "dependencies": {
+          "LibHttp": "1.0.0"
+        },
+        "runtime": {
+          "LibServer.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Console/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LibHttp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LibParse/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LibServer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

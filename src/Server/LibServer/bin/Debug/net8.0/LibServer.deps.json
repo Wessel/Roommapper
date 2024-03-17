@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "LibServer/1.0.0": {
+        "dependencies": {
+          "LibHttp": "1.0.0"
+        },
+        "runtime": {
+          "LibServer.dll": {}
+        }
+      },
+      "LibHttp/1.0.0": {
+        "runtime": {
+          "LibHttp.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LibServer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LibHttp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
