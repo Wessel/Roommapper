@@ -12,7 +12,10 @@ body:
     attributes:
       label: Which part is this bug report for?
       options:
-        - {{tree.parts}}
+        - API Server
+        - JSON parser
+        - Room mapper
+        - Route solver
     validations:
       required: true
   - type: textarea
@@ -32,7 +35,7 @@ body:
     attributes:
       label: Code sample
       description: Include a reproducible, minimal code sample. This will be automatically formatted into code, so no need for backticks.
-      render: {{project.lang}}
+      render: C#
       placeholder: |
         Your code sample should be...
         ... Minimal - Use as little code as possible that still produces the same problem (and is understandable)
@@ -48,9 +51,9 @@ body:
   - type: input
     id: lang-version
     attributes:
-      label: '{{project.lang}} version'
+      label: 'C# version'
       description: |
-        Which version of {{project.lang}} are you using?
+        Which version of C# are you using?
     validations:
       required: true
   - type: input

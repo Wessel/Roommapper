@@ -1,5 +1,5 @@
 addReviewers: true
 reviewers:
-  - {{project.reviewers}}
+  - Wessel
 numberOfReviewers: 0
 runOnDraft: true

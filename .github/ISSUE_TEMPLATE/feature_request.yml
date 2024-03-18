@@ -12,7 +12,10 @@ body:
     attributes:
       label: Which part is this feature request for?
       options:
-        - {{tree.parts}}
+        - API Server
+        - JSON parser
+        - Room mapper
+        - Route solver
     validations:
       required: false
   - type: textarea

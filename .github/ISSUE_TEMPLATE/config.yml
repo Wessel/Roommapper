@@ -4,4 +4,6 @@ blank_issues_enabled: false
 #    url:
 #    about:
 contact_links:
-  - {{project.contact}}
+  - name: "Email"
+    url: "mailto:contact@wessel.gg"
+    about: "Contact me via email"
