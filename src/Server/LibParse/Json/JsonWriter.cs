@@ -36,8 +36,13 @@ public static class JsonWriter {
   /// </summary>
   /// <param name="writer">The `TextWriter` to write the variable into</param>
   /// <param name="item">The item to cast into `writer`</param>
-  private static void AppendValue(TextWriter writer, object item) {
+  private static void AppendValue(TextWriter writer, object? item) {
     // Get the type of `item`. This is used to determine how to append the value to the writer.
+    if (item == null) {
+      writer.Write("null");
+      return;
+    }
+
     var type = item.GetType();
     switch (Type.GetTypeCode(type)) {
       case TypeCode.String:

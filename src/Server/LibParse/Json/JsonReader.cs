@@ -312,18 +312,20 @@ public static class JsonReader {
   /// <returns>The parsed anonymous value.</returns>
   private static object? ParseAnonymousValue(string json) {
     if (json.Length == 0) return null;
+    if (json == "null") return null;
+
     if (json[0] == '{' && json[^1] == '}') {
       var elems = Split(json);
       if (elems.Count % 2 != 0) return null;
       var dict = new Dictionary<string, object>(elems.Count / 2);
       for (var i = 0; i < elems.Count; i += 2)
-        dict[elems[i].Substring(1, elems[i].Length - 2)] = ParseAnonymousValue(elems[i + 1]) ?? string.Empty;
+        dict[elems[i].Substring(1, elems[i].Length - 2)] = ParseAnonymousValue(elems[i + 1]);
       return dict;
     }
     if (json[0] == '[' && json[^1] == ']') {
       var items = Split(json);
       var finalList = new List<object>(items.Count);
-      foreach (var item in items) finalList.Add(ParseAnonymousValue(item) ?? string.Empty);
+      foreach (var item in items) finalList.Add(ParseAnonymousValue(item));
       return finalList;
     }
     if (json[0] == '"' && json[^1] == '"') {
