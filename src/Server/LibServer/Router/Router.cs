@@ -10,13 +10,13 @@ public class Router(Dictionary<string, IRoute> routes) {
     foreach (var route in Routes) {
       if (request.Route == route.Key) {
         return request.Method switch {
-          "GET"     => route.Value.Get(request),
-          "POST"    => route.Value.Post(request),
-          "PUT"     => route.Value.Put(request),
-          "PATCH"   => route.Value.Patch(request),
-          "DELETE"  => route.Value.Delete(request),
-          "HEAD"    => route.Value.Head(request),
-          "OPTIONS" => route.Value.Options(request),
+          Method.Get     => route.Value.Get(request),
+          Method.Post    => route.Value.Post(request),
+          Method.Put     => route.Value.Put(request),
+          Method.Patch   => route.Value.Patch(request),
+          Method.Delete  => route.Value.Delete(request),
+          Method.Head    => route.Value.Head(request),
+          Method.Options => route.Value.Options(request),
           _         => route.Value.MethodNotAllowed()
         };
       }

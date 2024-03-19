@@ -4,9 +4,10 @@ public class HtmlRequest {
   private const string LogPrefix = "\u001b[47m[ WWW ]\u001b[0m";
 
   public string? Route;
-  private string? _httpVersion, _host, _body, _header, _method;
+  private string? _httpVersion, _host, _body, _header;
+  private Method? _method;
 
-  public string? Method => _method;
+  public Method? Method => _method;
   public string? Body => _body;
 
   public int Parse(string raw) {
@@ -25,7 +26,7 @@ public class HtmlRequest {
         if (i == 0) {
           if (!parts[0].Contains("HTTP")) return -1;
           var first = parts[0].Split(" ");
-          _method = first[0].ToUpper();
+          _method = MethodClass.StringToMethod(first[0].ToUpper());
           Route = first[1];
           _httpVersion = first[2].Split("/")[1];
         } else {
