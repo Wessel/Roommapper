@@ -6,15 +6,12 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v8.0": {
-      "Console/1.0.0": {
+      "LibCassandra/1.0.0": {
         "dependencies": {
-          "CassandraCSharpDriver": "3.20.1",
-          "LibCassandra": "1.0.0",
-          "LibParse": "1.0.0",
-          "LibServer": "1.0.0"
+          "CassandraCSharpDriver": "3.20.1"
         },
         "runtime": {
-          "Console.dll": {}
+          "LibCassandra.dll": {}
         }
       },
       "CassandraCSharpDriver/3.20.1": {
@@ -539,37 +536,11 @@
           "System.Threading": "4.0.11",
           "System.Xml.ReaderWriter": "4.0.11"
         }
-      },
-      "LibCassandra/1.0.0": {
-        "dependencies": {
-          "CassandraCSharpDriver": "3.20.1"
-        },
-        "runtime": {
-          "LibCassandra.dll": {}
-        }
-      },
-      "LibHttp/1.0.0": {
-        "runtime": {
-          "LibHttp.dll": {}
-        }
-      },
-      "LibParse/1.0.0": {
-        "runtime": {
-          "LibParse.dll": {}
-        }
-      },
-      "LibServer/1.0.0": {
-        "dependencies": {
-          "LibHttp": "1.0.0"
-        },
-        "runtime": {
-          "LibServer.dll": {}
-        }
       }
     }
   },
   "libraries": {
-    "Console/1.0.0": {
+    "LibCassandra/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -944,26 +915,6 @@
       "sha512": "sha512-Mk2mKmPi0nWaoiYeotq1dgeNK1fqWh61+EK+w4Wu8SWuTYLzpUnschb59bJtGywaPq7SmTuPf44wrXRwbIrukg==",
       "path": "system.xml.xdocument/4.0.11",
       "hashPath": "system.xml.xdocument.4.0.11.nupkg.sha512"
-    },
-    "LibCassandra/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "LibHttp/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "LibParse/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "LibServer/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     }
   }
 }

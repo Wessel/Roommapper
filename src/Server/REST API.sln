@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibParse", "LibParse\LibPar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{56E0FEEA-8155-4979-8E90-EF2F3DA4B9E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibCassandra", "LibCassandra\LibCassandra.csproj", "{4C40130D-8C12-412A-8455-C8911F275BCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{56E0FEEA-8155-4979-8E90-EF2F3DA4B9E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56E0FEEA-8155-4979-8E90-EF2F3DA4B9E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56E0FEEA-8155-4979-8E90-EF2F3DA4B9E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C40130D-8C12-412A-8455-C8911F275BCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C40130D-8C12-412A-8455-C8911F275BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C40130D-8C12-412A-8455-C8911F275BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C40130D-8C12-412A-8455-C8911F275BCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
