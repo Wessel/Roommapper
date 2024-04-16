@@ -9,24 +9,31 @@
   <component name="ChangeListManager">
     <list default="true" id="79f184c3-e88e-45be-9116-5fa813562754" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.REST API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.REST API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Console/Console.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Console/Console.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Console/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Console/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/Console.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/Console.deps.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/Console.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/Console.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/Console.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/Console.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/Console.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/Console.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibCassandra.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibCassandra.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibCassandra.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibCassandra.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibHttp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibHttp.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibHttp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibHttp.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibParse.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibParse.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibParse.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibParse.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibServer.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibServer.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibServer.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibServer.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibCassandra/bin/Debug/net8.0/LibCassandra.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LibCassandra/bin/Debug/net8.0/LibCassandra.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibCassandra/bin/Debug/net8.0/LibCassandra.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/LibCassandra/bin/Debug/net8.0/LibCassandra.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LibHttp/bin/Debug/net8.0/LibHttp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LibHttp/bin/Debug/net8.0/LibHttp.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LibHttp/bin/Debug/net8.0/LibHttp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/LibHttp/bin/Debug/net8.0/LibHttp.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LibServer/bin/Debug/net8.0/LibHttp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LibServer/bin/Debug/net8.0/LibHttp.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LibServer/bin/Debug/net8.0/LibHttp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/LibServer/bin/Debug/net8.0/LibHttp.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LibServer/bin/Debug/net8.0/LibServer.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LibServer/bin/Debug/net8.0/LibServer.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LibServer/bin/Debug/net8.0/LibServer.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/LibServer/bin/Debug/net8.0/LibServer.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REST API.sln" beforeDir="false" afterPath="$PROJECT_DIR$/REST API.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net8.0/CoverletSourceRootsMapping_Tests" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net8.0/CoverletSourceRootsMapping_Tests" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibParse/bin/Debug/net8.0/LibParse.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LibParse/bin/Debug/net8.0/LibParse.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibParse/bin/Debug/net8.0/LibParse.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/LibParse/bin/Debug/net8.0/LibParse.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibServer/LibServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LibServer/LibServer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net8.0/LibHttp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net8.0/LibHttp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net8.0/LibHttp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net8.0/LibHttp.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net8.0/LibParse.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net8.0/LibParse.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net8.0/LibParse.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net8.0/LibParse.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net8.0/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net8.0/Tests.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net8.0/Tests.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net8.0/Tests.pdb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +42,18 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Console/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Console/Routes/Root.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LibHttp/Request.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LibHttp/Response.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LibParse/Json/JsonReader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LibParse/Json/JsonWriter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LibServer/LibServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LibServer/Router/StaticFile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Tests/LibHttp.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Tests/LibParse.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -58,6 +77,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -103,6 +123,13 @@
       <workItem from="1710837790010" duration="665000" />
       <workItem from="1710957453267" duration="851000" />
       <workItem from="1711032327064" duration="2284000" />
+      <workItem from="1711455331482" duration="3291000" />
+      <workItem from="1711460005317" duration="1021000" />
+      <workItem from="1711461183917" duration="23000" />
+      <workItem from="1712231979902" duration="419000" />
+      <workItem from="1712241177264" duration="242000" />
+      <workItem from="1713265518075" duration="253000" />
+      <workItem from="1713275783375" duration="76000" />
     </task>
     <servers />
   </component>

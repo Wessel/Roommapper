@@ -16,17 +16,17 @@ internal static class Program {
     var tcpServer = new Server(5000);
     var router = new Router(Routes);
 
-    var databaseConfig = new ConnectionConfig {
-      Host = "127.0.0.1",
-      Port = 9042
-    };
-    var databaseConnection = new Executer(databaseConfig).Connect();
-    var query = new QueryBuilder()
-      .Select("eve.stablediffusion", [ "*" ])
-      .Where("id", "eed6b996-65dd-4920-a0a4-a11495ce8cb6");
-
-    databaseConnection.Execute(query);
-
+    // var databaseConfig = new ConnectionConfig {
+    //   Host = "127.0.0.1",
+    //   Port = 9042
+    // };
+    // var databaseConnection = new Executer(databaseConfig).Connect();
+    // var query = new QueryBuilder()
+    //   .Select("eve.stablediffusion", [ "*" ])
+    //   .Where("id", "eed6b996-65dd-4920-a0a4-a11495ce8cb6");
+    //
+    // databaseConnection.Execute(query);
+    //
 
     // var cluster = Cluster.Builder()
     //   .AddContactPoints("127.0.0.1")

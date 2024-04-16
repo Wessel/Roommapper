@@ -28,7 +28,7 @@ public class Server {
     Listening = true;
   }
 
-  public void AwaitMessage(Func<HtmlRequest, HtmlResponse> handler, string endRegex = @"\r\n?|\n", string replacer=@"\r\n") {
+  public void AwaitMessage(Func<HtmlRequest, HtmlResponse> handler) {
     // Console.WriteLine("{0} Server awaiting incoming client", LogPrefix);
     var client = _listener.AcceptTcpClient(); // .ConfigureAwait(false);
 
