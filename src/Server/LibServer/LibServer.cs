@@ -1,10 +1,9 @@
 namespace LibServer;
 
-using LibHttp;
+using Http;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Text.RegularExpressions;
 
 public class Server {
   private const string LogPrefix = "\u001b[44m[ TCP ]\u001b[0m";
@@ -28,7 +27,7 @@ public class Server {
     Listening = true;
   }
 
-  public void AwaitMessage(Func<HtmlRequest, HtmlResponse> handler) {
+  public void AwaitMessage(Func<HttpRequest, HttpResponse> handler) {
     // Console.WriteLine("{0} Server awaiting incoming client", LogPrefix);
     var client = _listener.AcceptTcpClient(); // .ConfigureAwait(false);
 
@@ -47,7 +46,7 @@ public class Server {
       var writer = new StreamWriter(stream);
 
       // Parse HTML data, if it fails, return 400 Bad Request
-      var request = new HtmlRequest();
+      var request = new HttpRequest();
       if (request.Parse(message) != 0) {
         var badReq = CreateBadRequestResponse();
         writer.Write(badReq.Build());
@@ -80,14 +79,14 @@ public class Server {
     client.Close();
   }
 
-  private void WriteBaseApiHeaders(HtmlResponse response) {
+  private void WriteBaseApiHeaders(HttpResponse response) {
     response.SetHeader("Server", _ip);
     response.SetHeader("Date", DateTime.UtcNow.ToString("ddd, dd MMM yyyy HH:mm:ss UTC"));
     response.SetHeader("Cache-Control", "max-age=0, private, must-revalidate");
   }
 
-  private HtmlResponse CreateBadRequestResponse() {
-    var badReq = new HtmlResponse("{ \"statusCode\": 400 }", statusCode:400);
+  private HttpResponse CreateBadRequestResponse() {
+    var badReq = new HttpResponse("{ \"statusCode\": 400 }", statusCode:400);
     WriteBaseApiHeaders(badReq);
 
     return badReq;

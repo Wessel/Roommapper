@@ -1,12 +1,12 @@
 namespace LibServer.Router;
 
-using LibHttp;
+using LibServer.Http;
 
 class StaticFile(string file) : IRoute  {
   private string File { get; } = file;
   private string _mime = "text/html";
-  public HtmlResponse Get(HtmlRequest req) {
-    var response = new HtmlResponse("");
+  public HttpResponse Get(HttpRequest req) {
+    var response = new HttpResponse("");
 
     response.SetHeader("Content-Type", _mime);
     response.SendFile(File);

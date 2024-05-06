@@ -18,8 +18,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\LibHttp\LibHttp.csproj" />
       <ProjectReference Include="..\LibParse\LibParse.csproj" />
+      <ProjectReference Include="..\LibServer\LibServer.csproj" />
     </ItemGroup>
 
 </Project>

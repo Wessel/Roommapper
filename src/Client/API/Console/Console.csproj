@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Server\LibParse\LibParse.csproj" />
+    <ProjectReference Include="..\..\..\Server\LibServer\LibServer.csproj" />
+    <ProjectReference Include="..\LibParse\LibParse.csproj" />
+    <ProjectReference Include="..\LibServer\LibServer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CassandraCSharpDriver" Version="3.20.1" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

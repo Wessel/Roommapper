@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\LibCassandra\LibCassandra.csproj" />
     <ProjectReference Include="..\LibParse\LibParse.csproj" />
     <ProjectReference Include="..\LibServer\LibServer.csproj" />
   </ItemGroup>

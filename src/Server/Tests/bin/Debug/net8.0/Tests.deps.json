@@ -10,6 +10,7 @@
         "dependencies": {
           "LibHttp": "1.0.0",
           "LibParse": "1.0.0",
+          "LibServer": "1.0.0",
           "Microsoft.NET.Test.Sdk": "17.6.0",
           "NUnit": "3.13.3",
           "NUnit.Analyzers": "3.6.1",
@@ -327,6 +328,14 @@
         "runtime": {
           "LibParse.dll": {}
         }
+      },
+      "LibServer/1.0.0": {
+        "dependencies": {
+          "LibHttp": "1.0.0"
+        },
+        "runtime": {
+          "LibServer.dll": {}
+        }
       }
     }
   },
@@ -433,6 +442,11 @@
       "sha512": ""
     },
     "LibParse/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LibServer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

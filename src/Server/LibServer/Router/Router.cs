@@ -1,14 +1,14 @@
 ﻿namespace LibServer.Router;
 
-using LibHttp;
+using LibServer.Http;
 
-public class Router(Dictionary<string, IRoute> routes) {
+public class Router(Dictionary<string, IRoute> routes, string baseURI) {
   private Dictionary<string, IRoute> Routes { get; } = routes;
 
-  public HtmlResponse Handler(HtmlRequest request) {
+  public HttpResponse Handler(HttpRequest request) {
     // Enumerable is considerably slower on small collections, that's why a `foreach` loop has been used.
     foreach (var route in Routes) {
-      if (request.Route == route.Key) {
+      if ($"/{baseURI}/{route.Key}" == request.Route) {
         return request.Method switch {
           Method.Get     => route.Value.Get(request),
           Method.Post    => route.Value.Post(request),
@@ -22,7 +22,7 @@ public class Router(Dictionary<string, IRoute> routes) {
       }
     }
 
-    return new HtmlResponse("{ \"message\": \"Not Found\" }", statusCode:404);
+    return new HttpResponse("{ \"message\": \"Not Found\" }", statusCode:404);
   }
 
   // EXPERIMENTAL!
