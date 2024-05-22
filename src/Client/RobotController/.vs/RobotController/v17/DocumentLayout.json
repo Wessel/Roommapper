@@ -1,28 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Wouter\\source\\repos\\Roommapper\\src\\Client\\RobotController\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{8962460F-9112-4A79-9B40-35CA420C98C6}|RobotController.csproj|c:\\users\\wouter\\source\\repos\\roommapper\\src\\client\\robotcontroller\\robot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8962460F-9112-4A79-9B40-35CA420C98C6}|RobotController.csproj|solutionrelative:robot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8962460F-9112-4A79-9B40-35CA420C98C6}|RobotController.csproj|c:\\users\\wouter\\source\\repos\\roommapper\\src\\client\\robotcontroller\\measurement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8962460F-9112-4A79-9B40-35CA420C98C6}|RobotController.csproj|solutionrelative:measurement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8962460F-9112-4A79-9B40-35CA420C98C6}|RobotController.csproj|c:\\users\\wouter\\source\\repos\\roommapper\\src\\client\\robotcontroller\\motor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8962460F-9112-4A79-9B40-35CA420C98C6}|RobotController.csproj|solutionrelative:motor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8962460F-9112-4A79-9B40-35CA420C98C6}|RobotController.csproj|c:\\users\\wouter\\source\\repos\\roommapper\\src\\client\\robotcontroller\\gyrosensor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8962460F-9112-4A79-9B40-35CA420C98C6}|RobotController.csproj|solutionrelative:gyrosensor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8962460F-9112-4A79-9B40-35CA420C98C6}|RobotController.csproj|c:\\users\\wouter\\source\\repos\\roommapper\\src\\client\\robotcontroller\\coordinate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8962460F-9112-4A79-9B40-35CA420C98C6}|RobotController.csproj|solutionrelative:coordinate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\tosl1\\source\\repos\\Roommapper\\src\\Client\\RobotController\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -30,72 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": -1,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Measurement.cs",
-              "DocumentMoniker": "C:\\Users\\Wouter\\source\\repos\\Roommapper\\src\\Client\\RobotController\\Measurement.cs",
-              "RelativeDocumentMoniker": "Measurement.cs",
-              "ToolTip": "C:\\Users\\Wouter\\source\\repos\\Roommapper\\src\\Client\\RobotController\\Measurement.cs",
-              "RelativeToolTip": "Measurement.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-24T14:42:12.609Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Motor.cs",
-              "DocumentMoniker": "C:\\Users\\Wouter\\source\\repos\\Roommapper\\src\\Client\\RobotController\\Motor.cs",
-              "RelativeDocumentMoniker": "Motor.cs",
-              "ToolTip": "C:\\Users\\Wouter\\source\\repos\\Roommapper\\src\\Client\\RobotController\\Motor.cs",
-              "RelativeToolTip": "Motor.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABYAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-24T14:05:27.087Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GyroSensor.cs",
-              "DocumentMoniker": "C:\\Users\\Wouter\\source\\repos\\Roommapper\\src\\Client\\RobotController\\GyroSensor.cs",
-              "RelativeDocumentMoniker": "GyroSensor.cs",
-              "ToolTip": "C:\\Users\\Wouter\\source\\repos\\Roommapper\\src\\Client\\RobotController\\GyroSensor.cs",
-              "RelativeToolTip": "GyroSensor.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAkwBQAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-24T14:04:29.082Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Coordinate.cs",
-              "DocumentMoniker": "C:\\Users\\Wouter\\source\\repos\\Roommapper\\src\\Client\\RobotController\\Coordinate.cs",
-              "RelativeDocumentMoniker": "Coordinate.cs",
-              "ToolTip": "C:\\Users\\Wouter\\source\\repos\\Roommapper\\src\\Client\\RobotController\\Coordinate.cs",
-              "RelativeToolTip": "Coordinate.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAcwA4AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-24T13:44:32.642Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Robot.cs",
-              "DocumentMoniker": "C:\\Users\\Wouter\\source\\repos\\Roommapper\\src\\Client\\RobotController\\Robot.cs",
-              "RelativeDocumentMoniker": "Robot.cs",
-              "ToolTip": "C:\\Users\\Wouter\\source\\repos\\Roommapper\\src\\Client\\RobotController\\Robot.cs",
-              "RelativeToolTip": "Robot.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAgwB0AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-24T13:39:53.416Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }

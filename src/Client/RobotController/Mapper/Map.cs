@@ -1,15 +1,13 @@
-namespace Mapper
+namespace RobotController
 {
-  public class Map
+  internal class Map
   {
-    private Coordinate bottomLeft;
-    private Coordinate topRight;
+    private Coordinate bottomLeft, topRight;
 
     public Map(Coordinate bottomLeft, Coordinate topRight)
     {
       this.bottomLeft = bottomLeft;
       this.topRight = topRight;
     }
-
   }
 }
