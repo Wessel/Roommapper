@@ -1,4 +1,4 @@
-﻿namespace LibServer.Http;
+namespace LibServer.Http;
 
 public class HttpRequest {
   private const string LogPrefix = "\u001b[47m[ WWW ]\u001b[0m";

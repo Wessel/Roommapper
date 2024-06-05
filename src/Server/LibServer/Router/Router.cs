@@ -1,4 +1,4 @@
-﻿namespace LibServer.Router;
+namespace LibServer.Router;
 
 using Http;
 using System.Text.RegularExpressions;

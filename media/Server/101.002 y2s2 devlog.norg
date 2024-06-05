@@ -4,7 +4,7 @@ description:
 authors: wessel
 categories: school, development, c#, robotica
 created: 2024-04-15T18:50:55
-updated: 2024-06-04T15:06:23+0100
+updated: 2024-06-05T22:49:28+0100
 version: 3.1.0
 @end
 
@@ -104,17 +104,20 @@ version: 3.1.0
   Om het maken van verschillende endpoints simpel te maken heb ik er uiteindelijk
   voor gekozen om een aparte *Router* class te maken, deze class zal alle
   requests apart verdelen over een opgegeven `Dictionairy<string, IRoute>`.
+
 ** IRoute interface
    Om het routen mogelijk te maken, wordt er gebruik gemaakt van een interface.
    Dit interface bevat alle mogelijk methodes (GET, POST, PUT, PATCH, etc.) die
    een HTTP/1.1 request kan maken. Hierdoor kan een class die gebaseerd is op
    dit interface afgehandeld worden door de *Router*.
+
 ** Router parsing
    Om fouten te voorkomen zal alles wat de Router gebruikt alvast geparsed
    worden door `HttpRequest`. Vervolgens zal de Router gebruik maken van de
    geparsde routes en methodes (in de vorm van een *enum*). Dit zorgt er voor
    dat als er een probleem met het parsen is, deze allemaal centraal verbeterd
    kunnen worden.
+
 * [VIII 15-03-2024] Data serialisatie
   Er is voor gekozen om JSON te gebruiken om data over de API te versturen.
   Daarom heb ik een JSON serialisatie library geschreven die data van en naar
@@ -166,12 +169,15 @@ version: 3.1.0
   UML over de duur van het project moet groeien en veranderen. Aangezien ik al
   een deel van de API server heb gemaakt, moest ik onthouden wat ik een
   terug had gebruikt.
+
 * [XI   01-06-2024] Databse intergratie afgerond
   Vandaag heb ik de routes vastgelegd die de *Server API* zal gebruiken.
   Ik heb de volgende routes gemaakt:
+
 ** GET /api/v1/database/metadata
    Deze route laat de metadata van het database zien, hier kwamen geen problemen
    naar voren aangezien de code ook maar 3 lijnen lang is.
+
 ** GET /api/v1/database
    Deze route wordt gebruikt om regels uit het database te vragen.
    - In eerste instantie lukte het niet om met een *UUID* een entry te zoeken,
@@ -193,6 +199,7 @@ version: 3.1.0
      een valide JSON-object. Uiteindelijk heb ik er voor gekozen om nog een
      struct te maken die alle velden van een row bevat, waar vervolgens weer een
      array van wordt gemaakt om met `LibParse` om te zetten naar een JSON string.
+
 ** POST /api/v1/database
    Deze route wordt gebruikt om data in het database in te voeren.
    - Deze route was vrij simpel om te implementeren vergeleken met de `GET`
@@ -202,9 +209,11 @@ version: 3.1.0
      te genereren, dit heb ik later echter vervangen door de Csharp functie
      `Guid.NewGuid()` zodat deze UUID ook weer teruggegeven kan worden aan de
      gebruiker na aanmaak van de row.
+
 * [XII    03-06-2024] Database delete route implementeren
   Vorige keer was ik vergeten om de `DELETE` route te implementeren, daarom
   dat ik er vandaag nog voor heb gekozen om deze te schrijven.
+
 ** DELETE /api/v1/database
    Deze route verwijdert een entry uit de database.
   -- Het eerste gedeelte van deze functie gebruikt het zelfde als de `GET`
@@ -214,12 +223,14 @@ version: 3.1.0
   Ook heb ik alle database calls herschreven om gebruik te maken van de
   `Prepare()` en `Bind()` statements. Dit voorkomt enige SQL injectie die kan
   gebeuren met het gebruik van hard-coded user-input in SQL (CQL) queries.
+
 * [XIII   04-06-2024] Verbinding met de server op de robot
   Om te vermijden dat beide robots publiekelijk aanroepbaar moeten zijn,
   ben ik ook begonnen om een paar routes te implementeren die de gebruiker
   via de server een connectie met de robot geeft (commando's versturen).
   Op deze manier hoeft alleen de server exposed te worden naar het internet om
   de robot te laten draaien.
+
 ** POST /api/v1/control
    Via deze endpoint wordt er bepaald door middel van de meegeleverde body wat
    er naar de robot wordt gestuurd, de volgende opties zijn mogelijk:
@@ -227,6 +238,7 @@ version: 3.1.0
    - `task: start|stop` bepaald wat de robot moet gaan doen
    -- `start` Geeft aan dat de robot moet starten met mappen
    -- `stop` Geeft aan dat de robot direct moet stoppen met mappen
+
 ** Gevonden bug
    Tijdens het maken van deze endpoint is er een bug gevonden:
    > Als er een extra slash aan het einde van de URL is, wordt hij niet correct
@@ -235,7 +247,62 @@ version: 3.1.0
    Dit was een vrij simpele bug, door bij de router aan te geven met een regex
    dat de laatste slashes altijd verwijdert mag worden, maar wel handig dat hij
    aangepakt is omdat dit best vaak voorkomt.
+
 * [XIV    06-06-2024] WebUI gemaakt in React
   Voor het UI gedeelte van de communicatie heb ik er voor gekozen om React te
-  gebruiken. Dit omdat JavaScript niet puur OOP is, wel OOP geschreven kan worden.
+  gebruiken. Dit omdat JavaScript niet puur OOP is, maar wel grotendeels OOP
+  geschreven kan worden.
+
+  Het was wel weer even inkomen aangezien ik al ruim een jaar geen React meer
+  heb gebruikt, maar voor de rest liep het redelijk voortvluchtig. Er waren geen
+  grote problemen, anders dan degene hieronder vermeld in de server broncode.
+
+** HTML canvas punten tekenen
+   Een HTML canvas heeft op zichzelf geen functie om een enkel punt te tekenen.
+   Daarom heb ik uiteindelijk besloten om een `arc` te maken met
+   de zelfde X en Y-coordinaat als start en eindpunt.
+
+** Het gebruik van querystrings in plaats van bodies
+   Voor *GET* requests is het gewoontelijk om een querystring (? na de URL)
+   te gebruiken voor enige zoekparamters in plaats van een megeleverde body.
+   Hiervoor is de `HttpRequest` class aangepast om tijdens het parsen ook een
+   `Dictionairy<String, String>` aan te maken met alle desbetreffende
+   querystrings. Ook is `Route` aangepast om de eventuele querystring te
+   verwijderen.
+
+** CORS policies
+   Bij het versturen van requests vanuit de webUI naar de backend kwam er in
+   eerste instantie een CORS error naar voren. Dit is uiteindelijk gefixt door
+   een aantal headers toe te voegen die de server naar de client meestuurt.
+   Ook is de *OPTIONS* endpoint geimplementeert voor endpoints die *POST*
+   endpoints implementeert, om een *200 OK* status te sturen zodra er een
+   *POST* request binnenkomt.
+   @code Csharp
+   // file: LibServer/LibServer.cs
+   private void WriteBaseApiHeaders(HttpResponse response) {
+     ...
+     ++response.SetHeader("Access-Control-Allow-Origin", "*");
+     ++response.SetHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+   }
+   @end
+
+** Bug bij het gaan naar de root (/)
+   Tijdens het ontwikkelen van het WebUI kwam ik er achter dat als de root URL
+   wordt gevraagd met een base endpoint dit niet werkt in verband met de extra
+   hardcoded slash. Dit is gefixt met een simpele ternary statement.
+   @code Csharp
+   // file: LibServer/Router/Router.cs
+   -- if (routePath == Regex.Replace(request.Route, @"\/+$", "")) {
+   ++ var routePath = route.Key.Length > 0 ? $"/{baseURI}/{route.Key}" : $"/{baseURI}";
+   ++ if (routePath == Regex.Replace(request.Route, @"\/+$", "")) {
+   @end
+
+** Het gebruik van Next.js
+   Na het ontwikkelen van de UI kwam ik er achter dat `create-react-app`
+   eigenlijk vervangen is door `create-next-app`, maar in verband met de
+   nodigheid om de code te herschrijven al wil ik het in Next.js doen heb ik
+   besloten om voor dit project
+
 * [XIV    06-06-2024] UML diagrammen bijgewerkt
+   Nu de broncode van de Server en WebUI compleet zijn heb ik de UML diagrammen
+   bijgewerkt om overeen te komen met de broncode.

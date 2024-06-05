@@ -37,7 +37,8 @@ export default class ControlField extends React.Component {
       body: JSON.stringify({ task: task })
     })
       .then(response => response.json())
-      .then(data => this.setState({ result: JSON.stringify(data) }))
+      .then(data => this.setState({
+        result: data.message ? data.message : JSON.stringify(data) }))
       .catch(this.handleError);
   }
 
@@ -45,9 +46,24 @@ export default class ControlField extends React.Component {
     return (
       <div className='control'>
         <div className='control-buttons'>
-          <Button type='primary' onClick={() => this.handleClick(tasks.START)}>Start</Button>
-          <Button type='primary' onClick={() => this.handleClick(tasks.MAP)}>Map</Button>
-          <Button type='primary' danger onClick={() => this.handleClick(tasks.STOP)}>Stop</Button>
+          <Button
+            type='primary'
+            onClick={() => this.handleClick(tasks.START)}
+          >
+            Start
+          </Button>
+          <Button
+            type='primary'
+            onClick={() => this.handleClick(tasks.MAP)}
+          >
+            Map
+          </Button>
+          <Button
+            type='primary' danger
+            onClick={() => this.handleClick(tasks.STOP)}
+          >
+            Stop
+          </Button>
         </div>
         <Card
           className='output-field'

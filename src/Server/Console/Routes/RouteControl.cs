@@ -10,8 +10,7 @@ namespace Console.Routes;
 public class RouteControl: IRoute {
   Dictionary<string, Dictionary<string, string>> _routes = new() {
     {
-      "roomba",
-      new() {
+      "roomba", new() {
         {
           "start", "127.0.0.1:5000/api/v1/database/metadata"
         },
@@ -31,7 +30,7 @@ public class RouteControl: IRoute {
 
     switch (data.task) {
       case "start":
-        SendHttpRequest(_routes["roomba"]["start"], "yeyeyeyeyeyeyeyyeeye", "POST", "/tt");
+        SendHttpRequest(_routes["roomba"]["start"], "", "POST", "/start");
         return new HttpResponse("{\"message\": \"roomba started\"}");
       case "stop":
         SendHttpRequest(_routes["roomba"]["stop"], "", "POST", "/stop");
@@ -50,16 +49,19 @@ public class RouteControl: IRoute {
     return response;
   }
 
-  public void SendHttpRequest(string Host, string body, string method, string route)
-  {
-    using (TcpClient client = new TcpClient())
-    {
-      // split _host into address:port
+  public HttpResponse Options(HttpRequest request) {
+    var response = new HttpResponse("{\"message\": \"options\"}");
+    response.Headers.Add("Allow", "GET, POST, OPTIONS");
+    return response;
+  }
+
+  // @todo(wessel): Rewrite, move to other class
+  public void SendHttpRequest(string Host, string body, string method, string route) {
+    using (TcpClient client = new TcpClient()) {
       string[] host = Host.Split(":");
       client.Connect(host[0], int.Parse(host[1].Split("/")[0]));
 
-      using (NetworkStream stream = client.GetStream())
-      {
+      using (NetworkStream stream = client.GetStream()) {
         string httpRequestMessage = $"{method} {route} HTTP/1.1\r\n" +
                                     $"Host: {Host}\r\n" +
                                     $"Content-Length: {body.Length}\r\n" +
@@ -72,13 +74,6 @@ public class RouteControl: IRoute {
         stream.Flush();
       }
     }
-
-    System.Console.WriteLine("Request sent");
   }
 
-  public HttpResponse Options(HttpRequest request) {
-    var response = new HttpResponse("{\"message\": \"options\"}");
-    response.Headers.Add("Allow", "GET, POST, OPTIONS");
-    return response;
-  }
 }

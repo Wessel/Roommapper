@@ -34,11 +34,16 @@ const App = () => {
         }}
         theme='dark'
       >
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['map']} items={menuItems} />
+        <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={['map']}
+          items={menuItems}
+        />
       </Sider>
       <Layout
-      theme='dark'
-      style={{ marginLeft: 200 }}
+        theme='dark'
+        style={{ marginLeft: 200 }}
       >
         <Content
           style={{ margin: '24px 16px 0', overflow: 'initial' }}
