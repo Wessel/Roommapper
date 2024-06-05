@@ -4,7 +4,7 @@ description:
 authors: wessel
 categories: school, development, c#, robotica
 created: 2024-04-15T18:50:55
-updated: 2024-06-05T22:49:28+0100
+updated: 2024-06-05T23:07:40+0100
 version: 3.1.0
 @end
 
@@ -248,7 +248,29 @@ version: 3.1.0
    dat de laatste slashes altijd verwijdert mag worden, maar wel handig dat hij
    aangepakt is omdat dit best vaak voorkomt.
 
-* [XIV    06-06-2024] WebUI gemaakt in React
+* [XIV    05-06-2024] Het opslaan van data in het database
+** Het opslaan van gemapte gegevens
+  Uiteindelijk heb ik er voor gekozen om data op te slaan in de volgende
+  kolommen:
+  - `<id:UUID>`         - Om iedere map uniek te kunnen identificeren wordt er
+    voor ieder een id gegenereerd. Dit is een `UUID` en geen
+    `Auto-Incrementing ID` in verband met dat *Cassandra* (het gebruikte database)
+    dit niet ondersteund door zijn opgesplitste database structuur.
+  - `<version:int>`     - Dit geeft de mogelijkheid om datasets van elkaar te
+    scheiden met bijvoorbeeld verschillende versies van de robot, of meerdere
+    datasets die een vormen door middel van de versienummers.
+  - `<date:DateTime>`   - Slaat de datum op dat de map is genomen, makkelijk om
+    de maps te identificeren.
+  - `<Objects:int[][]>` - In deze nested Array zullen X Y-coordinaatparen worden
+    opgeslagen waar objecten zich bevinden waar de robot niet doorheen kan.
+
+** Het opslaan van routeplanningen
+   Voor de routeplanningen heb ik nog niks opgeslagen, omdat ik dit aan *Tom*
+   overlaat. Ik weet nog niet wat de beste en handigste manier voor hem is om
+   dit op te slaan dus dit zal op een later moment gebeuren. Ook zal er dan
+   een route op de kaart getekent worden.
+
+* [XV      06-06-2024] WebUI gemaakt in React
   Voor het UI gedeelte van de communicatie heb ik er voor gekozen om React te
   gebruiken. Dit omdat JavaScript niet puur OOP is, maar wel grotendeels OOP
   geschreven kan worden.
@@ -303,6 +325,11 @@ version: 3.1.0
    nodigheid om de code te herschrijven al wil ik het in Next.js doen heb ik
    besloten om voor dit project
 
-* [XIV    06-06-2024] UML diagrammen bijgewerkt
+** [XVI   06-06-2024] Updaten van de robot-side server code
+   Nu er een aantal bugs uit de servercode zijn gehaald zal ik de code op de
+   robot nogmaals herschrijven maar nu met de nieuwe libraries. Ook zullen alle
+   benodigde routes geimplementeert worden om de Server set af te maken.
+
+* [XVII   06-06-2024] UML diagrammen bijgewerkt
    Nu de broncode van de Server en WebUI compleet zijn heb ik de UML diagrammen
    bijgewerkt om overeen te komen met de broncode.
