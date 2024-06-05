@@ -13,9 +13,13 @@ internal static class Program {
       .Build();
     var cassandraSession = cluster.Connect();
 
+    InitializeDatabase(cassandraSession);
+
     Dictionary<string, IRoute> routes = new() {
       { "", new Root() },
+      { "database", new RouteDatabase(cassandraSession) },
       { "database/metadata", new RouteMetadata(cassandraSession) },
+      { "roomba/control", new RouteControl() }
     };
 
     var tcpServer = new Server(5000);
@@ -28,23 +32,17 @@ internal static class Program {
       tcpServer.AwaitMessage(router.Handler);
     }
   }
+
+  private static void InitializeDatabase(ISession session) {
+    session.Execute(@"CREATE KEYSPACE IF NOT EXISTS roommapper
+      WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'datacenter1' : 1 };");
+    session.Execute(@"
+      CREATE TABLE IF NOT EXISTS Roommapper.Maps(
+      Id uuid,
+      Objects text,
+      Version int,
+      Date timestamp,
+      PRIMARY KEY (Id,Version,Date)
+    )");
+  }
 }
-
-
-
-// var query = new QueryBuilder()
-//   .Select("eve.stablediffusion", [ "*" ])
-//   .Where("id", "eed6b996-65dd-4920-a0a4-a11495ce8cb6");
-//
-// databaseConnection.Execute(query);
-//
-
-// Console.WriteLine("Connected to cluster: " + cluster.Metadata.ClusterName);
-//
-// var keyspaceNames = session
-//   .Execute("SELECT * FROM system_schema.keyspaces")
-//   .Select(row => row.GetValue<string>("keyspace_name"));
-//
-// foreach (var name in keyspaceNames) {
-//   Console.WriteLine("- {0}", name);
-// }

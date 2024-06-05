@@ -4,8 +4,8 @@ public class HttpRequest {
   private const string LogPrefix = "\u001b[47m[ WWW ]\u001b[0m";
 
   public string? Route;
-  private string? _httpVersion, _host, _body, _header;
-  private Method? _method;
+  public string? _httpVersion, _host, _body, _header;
+  public Method? _method;
 
   public Method? Method => _method;
   public string? Body => _body;

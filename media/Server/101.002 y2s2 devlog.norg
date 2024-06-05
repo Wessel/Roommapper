@@ -1,0 +1,241 @@
+@document.meta
+title: 100.002 y2s2 devlog
+description:
+authors: wessel
+categories: school, development, c#, robotica
+created: 2024-04-15T18:50:55
+updated: 2024-06-04T15:06:23+0100
+version: 3.1.0
+@end
+
+=TOC
+
+* Summary
+
+* [I    06-02-2024] Groepskeuze
+** Initiele groepskeuze en opsplitsing door indelingsfout
+   Als eerste had ik besloten om een groepje met Semih en Vincent te vormen.
+   Echter bleek er na een aantal dagen dat de groepsverdeling fout was waardoor
+   Wouter Buurman alleen was. Hierdoor heb ik er uiteindelijk voor gekozen om op
+   te splitsen en met Wouter Buurman verder te gaan, zodat hij het niet alleen
+   hoeft te doen.
+
+   Uiteindelijk kwam ook Tom Slikker, een al afgestudeerde student, bij ons
+   groepje. Dit vak (Robotica) is het enigste vak wat hij nog moest halen om
+   zijn diploma te krijgen.
+
+** Eerste indruk van de groep
+   Zelf ben ik wel optimistisch over dit project, ik denk dat, met de help van
+   Tom wij dit project met een goed cijfer kunnen afronden. Aan het begin zal ik
+   mij wel wat meer bezig halen met het halen van het Embedded Systems project,
+   maar als dat geweest is zal ik mij hier volop gaan focussen.
+
+* [II   14-02-2024] Projectkeuze
+** Projectkeuze van mijn oorspronkelijke groepje
+   In eerste instantie had ik al een oppervlakkig idee uitbedacht met Semih en
+   Vincent. Wij zouden een bestaande roomba (robot stofzuiger) gaan modificeren
+   zodanig dat hij een kamer uit kan kaarten. Deze kaart zou dan vervolgens
+   beschikbaar zijn om bekeken te worden door een gebruiker.
+
+** Projectkeuze adaptatie voor het nieuwe groepje
+   Nadat ik afgesplitst was van Semih en Vincent, vond ik het zonde om het idee
+   zo maar te laten gaan. Daarom hadden we er uiteindelijk voor gekozen om dit
+   idee verder uit te werken.
+
+   Toevallig had Tom al wat ervaring met path finding en room mapping, dus dat
+   kwam goed uit. Daarom hebben wij er uiteindelijk voor gekozen om onze eigen
+   robot te maken die een kamer uit mapt en de makkelijkst mogelijke route
+   berekent om de hele kamer af te leggen.
+
+** Projecteisen
+   Voor dit project moet er minimaal 3 grote onderdelen bedacht worden, die
+   vervolgens met behulp van een Object Oriented programmeertaal uitegewerkt
+   worden.
+
+   Als extra eisen hebben wij bedacht:
+   - De robot moet via een API aangestuurd kunnen worden vanuit een
+     afzonderlijke server
+   - De robot moet een kamer kunnen uitmappen
+   - De robot moet de makkelijkst mogelijke route kunnen berekenen om de hele
+     kamer af te leggen
+
+   Als OOP taal hebben wij er uiteindelijk gekozen om C# te gebruiken, omdat
+
+* [III  15-02-2024] Rolverdeling
+  Uiteindelijk hebben we de rollen verdeeld.
+  - *Ikzelf* zal mij voornamelijk bezig houden met de *communicatie*. Aangezien
+    een van de Projecteisen is dat de robot via een API aangestuurd moet kunnen
+    worden vanuit een afzonderlijke server, zal ik deze API server gaan maken.
+  - *Tom* zal zich voornamelijk bezig houden met het maken van het
+    *path finding algoritme*. Aangezien hij hier al recentelijke ervaring mee
+    heeft, leek ons het het verstandigste als hij dit deel uitvoert
+  - *Wouter* zal zich voornamelijk bezig houden met het *uitmappen* van de kamer.
+
+   Wij zullen met zijn allen de onderdelen voor de robot bij elkaar zoeken,
+   een frame maken en de hiervoor benodigde software schrijven.
+
+* [IV   20-02-2024] Eerste ontwerp
+** Onderdeelkeuze
+   Nu wij een algemeen idee hebben, willen wij gaan kijken naar welke onderdelen
+   wij nodig hebben voor de robot. Hierbij hebben wij de volgende onderdelen
+   bedacht:
+   - Frame
+   - Wielen
+   - Motoren
+   - Sensoren
+   - Batterij
+   - Microcontroller
+
+** Mockup-model
+  Vandaag hebben we het eerste ontwerp gemaakt van de robot. Ik heb een
+  3d model van het frame gemaakt door middel van Fusion 360. Vervolgens heb ik
+  ook de bijbehorende CAD bestanden van de onderdelen bij elkaar gevonden en
+  deze toegevoegd aan de mockup.
+
+* [V    27-02-2024] Finalisering eerste ontwerp, onderdelen bestellen
+
+* [VI   01-03-2024] Begin van de server code
+  Vandaag ben ik begonnen met het schrijven van de server code. Ik heb een
+  simpele server gemaakt die een GET request kan ontvangen. Mijn doel is het om
+  zo min mogelijk libraries te gebruiken, daarom heb ik alleen de ingebouwde
+  library voor een `TcpServer` gebruikt.
+
+* [VII  07-03-2024] Routing
+  Om het maken van verschillende endpoints simpel te maken heb ik er uiteindelijk
+  voor gekozen om een aparte *Router* class te maken, deze class zal alle
+  requests apart verdelen over een opgegeven `Dictionairy<string, IRoute>`.
+** IRoute interface
+   Om het routen mogelijk te maken, wordt er gebruik gemaakt van een interface.
+   Dit interface bevat alle mogelijk methodes (GET, POST, PUT, PATCH, etc.) die
+   een HTTP/1.1 request kan maken. Hierdoor kan een class die gebaseerd is op
+   dit interface afgehandeld worden door de *Router*.
+** Router parsing
+   Om fouten te voorkomen zal alles wat de Router gebruikt alvast geparsed
+   worden door `HttpRequest`. Vervolgens zal de Router gebruik maken van de
+   geparsde routes en methodes (in de vorm van een *enum*). Dit zorgt er voor
+   dat als er een probleem met het parsen is, deze allemaal centraal verbeterd
+   kunnen worden.
+* [VIII 15-03-2024] Data serialisatie
+  Er is voor gekozen om JSON te gebruiken om data over de API te versturen.
+  Daarom heb ik een JSON serialisatie library geschreven die data van en naar
+  json kan parsen.
+
+  Voor beide de `JsonReader` en `JsonWriter` class is er besloten om gebruik te
+  maken van een `this <object|string> item` als eerste parameter.
+  Hierdoor kan de functie aangeroepen worden via `object.ReadJson()` of
+  `string.WriteJson<object>()` in plaats van `<JsonReader>.ReadJson(object)` of
+  `<JsonWriter>.WriteJson<object>(<json:string>)`.
+
+** JsonReader
+   De JsonReader class geeft *één publieke* statische functie mee, namelijk
+   `<object>.ReadJson()`.
+
+   De functie leest het meegeleverde object uit, en zet alle publieke velden van
+   het object om in een bruikbare JSON string.
+
+** JsonWriter
+    De JsonWriter class geeft *één publieke* statische functie mee, namelijk
+    `<object>.WriteJson(<json:string>)`. Door het gebruik van
+    *Generic Type Parameters* zal deze functie het zelfde datatype terug geven
+    als het meegeleverde object.
+
+    De functie leest de meegeleverde JSON string uit en *cast hem naar `object`.
+    Als geen `object` meegeleverd is, zal dit een geanonimiseerd
+    `Dictionary<string,object>` zijn. Hier kunnen vervolgens de waardes van
+    uitgelezen worden door middel van _type casting_. Een voorbeeld hiervan is:
+    `(Dictionary<string,object>)obj)["name"]`.
+
+* [IX   20-03-2024] Unit tests
+  Onderhand wordt de code base al aardig groot, daarom heb ik besloten om een
+  aantal unit tests toe te voegen. Ik heb besloten om de volgende tests te maken:
+  - LibParse
+  -- ClassToJson -> Test of de `WriteJson` functie werkt
+  -- ParseToAnonymous -> Test of de `ReadJson` functie werkt
+
+** Gevonden bug
+   Door deze unit tests uit te voeren was ik achter een bug gekomen in de
+   `LibPrase`die mij niet eerder was opgemerkt:
+   > Als er `null` meegegeven wordt aan de `WriteJson` functie, zal de functie
+   > lege string teruggeven in plaats van null.
+
+   Verder werkte alle code wel als verwacht, en was ik tevreden met de resultaten.
+
+* [X    25-03-2024] UML diagram gemaakt
+  Uiteindelijk heb ik de UML diagram gemaakt voor de API server, echter
+  was dit wat ingewikkelder dan geplant, omdat een van de vereisten was dat de
+  UML over de duur van het project moet groeien en veranderen. Aangezien ik al
+  een deel van de API server heb gemaakt, moest ik onthouden wat ik een
+  terug had gebruikt.
+* [XI   01-06-2024] Databse intergratie afgerond
+  Vandaag heb ik de routes vastgelegd die de *Server API* zal gebruiken.
+  Ik heb de volgende routes gemaakt:
+** GET /api/v1/database/metadata
+   Deze route laat de metadata van het database zien, hier kwamen geen problemen
+   naar voren aangezien de code ook maar 3 lijnen lang is.
+** GET /api/v1/database
+   Deze route wordt gebruikt om regels uit het database te vragen.
+   - In eerste instantie lukte het niet om met een *UUID* een entry te zoeken,
+     uiteindelijk bleek het dat de wrapper die ik gebruik om contact te maken
+     met de database geen strings maar `Guid`'s accepteerd als input op een
+     *UUID* veld. Na wat testen was deze fix redelijk simpel
+   - Het net afhandelen van errors/verkeerde inputs was ook even uitvogelen,
+     uiteindelijk heb ik er voor gekozen om het programma te laten erroren,
+     en deze vervolgens op te vangen met een try-catch blok. Dit maakt het ook
+     heel simpel om incomplete velden terug te sturen d.m.v. `throw`.
+     Zo hoeft er voor ieder incorrecte waarde maar een return statement te zijn.
+   - CQL (Cassandra Query Language) staat het niet toe om bij een `SELECT`
+     statement x OF y OF z toe te laten, daarom heb ik er uiteindelijk voor
+     gekozen om de opgegeven zoekparameter te bepalen d.m.v.
+     een ternary operator, de volgorde voor zoekkeuzes gaat van
+     `UUID->Date->Version`.
+   - Aangezien de Cassandra wrapper de gevonden rows als een iterator teruggeeft,
+     moest er ook een kleine functie gescreven worden om deze om te zetten naar
+     een valide JSON-object. Uiteindelijk heb ik er voor gekozen om nog een
+     struct te maken die alle velden van een row bevat, waar vervolgens weer een
+     array van wordt gemaakt om met `LibParse` om te zetten naar een JSON string.
+** POST /api/v1/database
+   Deze route wordt gebruikt om data in het database in te voeren.
+   - Deze route was vrij simpel om te implementeren vergeleken met de `GET`
+     route, in verband met dat er maar een veld opgegeven kan worden door de
+     gebruiker, namelijk `objets`.
+   - In eerste instantie gebruikte ik de `uuid()` functie in CQL om een UUID
+     te genereren, dit heb ik later echter vervangen door de Csharp functie
+     `Guid.NewGuid()` zodat deze UUID ook weer teruggegeven kan worden aan de
+     gebruiker na aanmaak van de row.
+* [XII    03-06-2024] Database delete route implementeren
+  Vorige keer was ik vergeten om de `DELETE` route te implementeren, daarom
+  dat ik er vandaag nog voor heb gekozen om deze te schrijven.
+** DELETE /api/v1/database
+   Deze route verwijdert een entry uit de database.
+  -- Het eerste gedeelte van deze functie gebruikt het zelfde als de `GET`
+     route om te kijken of de database entry uberhaupt bestaat. Als hij bestaat
+     wordt er vervolgens een `DELETE` operatie uitgevoerd, en wordt de
+     verwijderde row teruggestuurd naar de gebruiker.
+  Ook heb ik alle database calls herschreven om gebruik te maken van de
+  `Prepare()` en `Bind()` statements. Dit voorkomt enige SQL injectie die kan
+  gebeuren met het gebruik van hard-coded user-input in SQL (CQL) queries.
+* [XIII   04-06-2024] Verbinding met de server op de robot
+  Om te vermijden dat beide robots publiekelijk aanroepbaar moeten zijn,
+  ben ik ook begonnen om een paar routes te implementeren die de gebruiker
+  via de server een connectie met de robot geeft (commando's versturen).
+  Op deze manier hoeft alleen de server exposed te worden naar het internet om
+  de robot te laten draaien.
+** POST /api/v1/control
+   Via deze endpoint wordt er bepaald door middel van de meegeleverde body wat
+   er naar de robot wordt gestuurd, de volgende opties zijn mogelijk:
+   - `robotId: _` bepaald naar welke robot het eventueel wordt verstuurd
+   - `task: start|stop` bepaald wat de robot moet gaan doen
+   -- `start` Geeft aan dat de robot moet starten met mappen
+   -- `stop` Geeft aan dat de robot direct moet stoppen met mappen
+** Gevonden bug
+   Tijdens het maken van deze endpoint is er een bug gevonden:
+   > Als er een extra slash aan het einde van de URL is, wordt hij niet correct
+   > geroute.
+
+   Dit was een vrij simpele bug, door bij de router aan te geven met een regex
+   dat de laatste slashes altijd verwijdert mag worden, maar wel handig dat hij
+   aangepakt is omdat dit best vaak voorkomt.
+* [XIV    06-06-2024] WebUI gemaakt in React
+  Voor het UI gedeelte van de communicatie heb ik er voor gekozen om React te
+  gebruiken. Dit omdat JavaScript niet puur OOP is, wel OOP geschreven kan worden.
+* [XIV    06-06-2024] UML diagrammen bijgewerkt

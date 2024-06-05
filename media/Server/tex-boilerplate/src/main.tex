@@ -1,0 +1,59 @@
+\documentclass[10pt]{article}
+
+%/ Use case: margins
+\usepackage[letterpaper,
+  top=2cm,
+  bottom=2cm,
+  left=2cm,
+  right=2cm,
+  marginparwidth=1.75cm]{geometry}
+%/ Use case: language and spell checking
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+%/ Use case: uppercase headers
+\usepackage{titlecaps}
+\usepackage{sectsty}
+%/ Use case: text formatting
+\usepackage{url}
+\usepackage[outputdir=tmp]{minted}
+\usepackage[colorlinks=true, allcolors=teal]{hyperref}
+\usepackage{textcomp}
+\usepackage{amsmath}
+%/ Use case: images
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage[font=small,labelfont=bf]{caption}
+%/ Use case: tables
+\usepackage{booktabs}
+\usepackage[flushleft]{threeparttable}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+
+\pgfplotsset{compat=1.18}
+
+\allsectionsfont{\mdseries\scshape}
+
+\title{\titlecap{\scshape Title}}\normalfont
+\author{Wessel Tip $<$contact@wessel.gg$>$ (Student number 696770, \url{https://wessel.gg/})}
+\date{Computer Engineering at InHolland University of Applied Sciences\linebreak Year 2, Semester 2 (Jan. 2024 - Jun. 2024)}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In dit verslag zal de ontwikkeling van mijn persoonlijke bijdrage aan het project
+Robotica worden besproken. Mijn persoonlijke bijdrage zal de communicatie tussen
+de gebruiker, de robot en een aparte dataserver beheren.
+
+Het hele project zal in Csharp worden geschreven door zijn objectgeoriënteerde aard.
+\end{abstract}
+
+\tableofcontents
+
+\input{sections/1 introduction}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references.bib}
+
+\end{document}
