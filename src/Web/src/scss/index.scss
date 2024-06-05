@@ -1,0 +1,30 @@
+.control {
+  display: flex;
+  flex-direction: column;
+
+  .control-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: space-evenly;
+    margin: 5px;
+  }
+
+  .output-field {
+    width: 300px;
+    min-height: 50px;
+  }
+}
+
+.map-canvas {
+  border: 1px solid red;
+}
+
+.map-choice {
+  margin-bottom: 5px;
+  display: flex;
+  gap: 10px;
+
+  .map-selector {
+    min-width: 100px;
+  }
+}
