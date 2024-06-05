@@ -6,6 +6,7 @@ public class HttpRequest {
   public string? Route;
   public string? _httpVersion, _host, _body, _header;
   public Method? _method;
+  public Dictionary<string, string> QueryString = new();
 
   public Method? Method => _method;
   public string? Body => _body;
@@ -44,6 +45,20 @@ public class HttpRequest {
         }
       }
       catch { return -1; }
+    }
+
+
+    var querySplit = Route.Split("?");
+    if (querySplit.Length == 1) return 0;
+
+    Route = querySplit[0];
+    var pairs = querySplit[1].Split('&');
+
+    foreach (var pair in pairs) {
+      var keyValue = pair.Split('=');
+      if (keyValue.Length == 2) {
+        QueryString.Add(keyValue[0], keyValue[1]);
+      }
     }
 
     return 0;

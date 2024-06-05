@@ -9,7 +9,8 @@ public class Router(Dictionary<string, IRoute> routes, string baseURI) {
   public HttpResponse Handler(HttpRequest request) {
     // Enumerable is considerably slower on small collections, that's why a `foreach` loop has been used.
     foreach (var route in Routes) {
-      if ($"/{baseURI}/{route.Key}" == Regex.Replace(request.Route, @"\/+$", "")) {
+      var routePath = route.Key.Length > 0 ? $"/{baseURI}/{route.Key}" : $"/{baseURI}";
+      if (routePath == Regex.Replace(request.Route, @"\/+$", "")) {
         return request.Method switch {
           Method.Get     => route.Value.Get(request),
           Method.Post    => route.Value.Post(request),

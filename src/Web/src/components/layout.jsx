@@ -57,7 +57,7 @@ const App = () => {
                 <MapCanvas
                   width={600}
                   height={600}
-                  onError={MapCanvas.handleError}
+                  onError={Controlfield.handleError}
                   className='map-canvas'
                 />
               </div>

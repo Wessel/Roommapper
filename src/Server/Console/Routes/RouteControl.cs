@@ -16,7 +16,10 @@ public class RouteControl: IRoute {
           "start", "127.0.0.1:5000/api/v1/database/metadata"
         },
         {
-          "stop", "http://127.0.0.1:5050/stop"
+          "stop", "127.0.0.1:5000/api/v1/database/metadata"
+        },
+        {
+          "map", "127.0.0.1:5000/api/v1/database/metadata"
         }
       }
     }
@@ -33,13 +36,16 @@ public class RouteControl: IRoute {
       case "stop":
         SendHttpRequest(_routes["roomba"]["stop"], "", "POST", "/stop");
         return new HttpResponse("{\"message\": \"roomba stopped\"}");
+      case "map":
+        SendHttpRequest(_routes["roomba"]["map"], "", "POST", "/map");
+        return new HttpResponse("{\"message\": \"roomba mapping\"}");
       default:
         return new HttpResponse("{\"message\": \"invalid command\"}", 400);
     }
   }
   public HttpResponse Get(HttpRequest request) {
     var data = request.Body?.FromJson<object>();
-    var response = new HttpResponse($"{{\"message\": \"you are at /\",\r\n{data?.ToJson()} }}");
+    var response = new HttpResponse($"{{\"message\": \"you are at /\" }}");
 
     return response;
   }
@@ -68,5 +74,11 @@ public class RouteControl: IRoute {
     }
 
     System.Console.WriteLine("Request sent");
+  }
+
+  public HttpResponse Options(HttpRequest request) {
+    var response = new HttpResponse("{\"message\": \"options\"}");
+    response.Headers.Add("Allow", "GET, POST, OPTIONS");
+    return response;
   }
 }

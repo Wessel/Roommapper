@@ -12,20 +12,25 @@ public class RouteDatabase(ISession cassandraSession): IRoute {
   /// </summary>
   public HttpResponse Get(HttpRequest request) {
     try {
-      var parsedBody = request.Body?.FromJson<Data>();
 
       // Prepare the select statement based on the given criteria
       // If no criteria is given, throw an exception.
       // Using a prepare due to the potential of SQL injection when accepting
       // any form of user data.
-      var selectStatement =
-        parsedBody?.id != null ? cassandraSession.Prepare(@"SELECT * FROM Roommapper.Maps WHERE Id = ?;")
-          .Bind(Guid.Parse(parsedBody.id)) :
-        parsedBody?.date != null ? cassandraSession.Prepare(@"SELECT * FROM roommapper.maps WHERE Date = ?;")
-          .Bind(DateTime.Parse(parsedBody.date)) :
-        parsedBody?.version != null ? cassandraSession.Prepare(@"SELECT * FROM roommapper.maps WHERE Version = ?;")
-          .Bind(parsedBody?.version) :
-        throw new Exception("No valid search criteria given, give one of (id, date, version).");
+      var queries = new Dictionary<string, Func<string, BoundStatement>> {
+        ["id"] = id => cassandraSession.Prepare(@"SELECT * FROM Roommapper.Maps WHERE Id = ?;").Bind(Guid.Parse(id)),
+        ["date"] = date => cassandraSession.Prepare(@"SELECT * FROM roommapper.maps WHERE Date = ?;").Bind(DateTime.Parse(date)),
+        ["version"] = version => cassandraSession.Prepare(@"SELECT * FROM roommapper.maps WHERE Version = ?;").Bind(int.Parse(version)),
+        ["all"] = _ => cassandraSession.Prepare(@"SELECT * FROM roommapper.maps;").Bind()
+      };
+
+      var selectStatement = queries
+        .Where(query => request.QueryString.ContainsKey(query.Key))
+        .Select(query => query.Value(request.QueryString[query.Key]))
+        .FirstOrDefault();
+
+      if (selectStatement == null) throw new Exception("No valid search criteria given, give one of (id, date, version).");
+
 
       // Execute the query and return all rows in an array
       var rowSet = cassandraSession.Execute(selectStatement);

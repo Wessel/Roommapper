@@ -13,6 +13,8 @@ const tasks = Object.freeze({
 export default class ControlField extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleError = this.handleError.bind(this);
     // Save the state of the "message" field.
     this.state = {
       result: null

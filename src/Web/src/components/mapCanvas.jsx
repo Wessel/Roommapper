@@ -46,7 +46,8 @@ export default class MapCanvas extends React.Component {
 
       return map;
     } catch (ex) {
-      this.props.onError(ex);
+      return;
+      // this.props.onError(ex);
     }
   }
 

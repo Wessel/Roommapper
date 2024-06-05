@@ -83,6 +83,8 @@ public class Server {
     response.SetHeader("Server", _ip);
     response.SetHeader("Date", DateTime.UtcNow.ToString("ddd, dd MMM yyyy HH:mm:ss UTC"));
     response.SetHeader("Cache-Control", "max-age=0, private, must-revalidate");
+    response.SetHeader("Access-Control-Allow-Origin", "*");
+    response.SetHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   }
 
   private HttpResponse CreateBadRequestResponse() {
