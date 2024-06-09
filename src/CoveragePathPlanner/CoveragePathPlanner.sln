@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoutePlanner", "RoutePlanner.csproj", "{88355634-1B39-4827-BF30-7F28679F9F29}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoveragePathPlanner", "CoveragePathPlanner.csproj", "{19337BCA-6374-4DAE-90D4-38CF1D236D30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{88355634-1B39-4827-BF30-7F28679F9F29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88355634-1B39-4827-BF30-7F28679F9F29}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88355634-1B39-4827-BF30-7F28679F9F29}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88355634-1B39-4827-BF30-7F28679F9F29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19337BCA-6374-4DAE-90D4-38CF1D236D30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19337BCA-6374-4DAE-90D4-38CF1D236D30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19337BCA-6374-4DAE-90D4-38CF1D236D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19337BCA-6374-4DAE-90D4-38CF1D236D30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {34DA189D-30EE-4764-9FA7-E0231AAB553B}
+		SolutionGuid = {45198B26-DA54-465D-98BD-3568A4250889}
 	EndGlobalSection
 EndGlobal
