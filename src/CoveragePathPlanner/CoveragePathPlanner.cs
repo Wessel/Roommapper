@@ -115,20 +115,6 @@ public class CoveragePathPlanner
         return Math.Abs(cell.X - (_width - 1)) + Math.Abs(cell.Y - (_height - 1));
     }
 
-    public List<Point> test()
-    {
-      CoveragePathPlanner planner = new CoveragePathPlanner(500, 500);
-
-      List<Obstacle> obstacles = new List<Obstacle>
-      {
-        new Obstacle { X = 100, Y = 100, Width = 50, Height = 50 },
-        new Obstacle { X = 200, Y = 200, Width = 100, Height = 100 },
-        new Obstacle { X = 300, Y = 300, Width = 150, Height = 150 }
-      };
-
-      return planner.PlanPath(obstacles);
-
-    }
 }
 
 public class Obstacle
