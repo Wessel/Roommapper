@@ -15,8 +15,8 @@ export default class MapCanvas extends React.Component {
     // Get a reference to the canvas element so we can draw on it
     this.canvasRef = React.createRef();
     this.state = {
-      inputValue: '8a97354d-d4ac-43c6-8b32-528cc24e3ede',
-      searchOption: 'id',
+      inputValue: '',
+      searchOption: 'name',
       canvasWidth: props.width   || this.defaultWidth,
       canvasHeight: props.height || this.defaultHeight,
     };
@@ -33,16 +33,18 @@ export default class MapCanvas extends React.Component {
     this.draw();
   }
 
-  async getLinePoints(endpoint = '') {
+  async getLinePoints(endpoint = '', altKey, altVal) {
     try {
       const { searchOption, inputValue } = this.state;
-      const url = `${API_ENDPOINT}/database/${endpoint}?${searchOption}=${inputValue}`;
+      const key = altKey || this.state.searchOption;
+      const val = altVal || this.state.inputValue;
+      const url = `${API_ENDPOINT}/database/${endpoint}?${key}=${val}`;
       const data = await (await fetch(url)).json();
 
       // Combine all found sets into a singular array.
-      const map = [];
+      const map = { 'id': data.length < 2 ? data[0].Id : undefined, 'points': [] };
       if (!Array.isArray(data) || data.length < 1) return map;
-      data.forEach((set) => set.Objects.forEach((coord) => map.push(coord)));
+      data.forEach((set) => set.Objects.forEach((coord) => map.points.push(coord)));
 
       return map;
     } catch (ex) {
@@ -55,9 +57,8 @@ export default class MapCanvas extends React.Component {
     // Get the 2D context from the canvas element
     const ctx = this.canvasRef.current.getContext('2d');
     // Get the points to draw from the server
-    const points = await this.getLinePoints();
-    const route = await this.getLinePoints("path");
-    // const route = await this.getRoutePoints();
+    const map = await this.getLinePoints();
+    const route = await this.getLinePoints('path', 'id', map ? map.id : '');
 
     // Set the font for the text we will draw on the canvas
     ctx.font = "24px Comic Sans MS";
@@ -66,7 +67,7 @@ export default class MapCanvas extends React.Component {
     ctx.clearRect(0, 0, this.state.canvasWidth, this.state.canvasHeight);
 
     // If there are no points, display a message and return
-    if (!points || points.length < 1) {
+    if (!map || map.points.length < 1) {
       ctx.fillText("No valid entry found.", 10, this.state.canvasHeight / 2);
       return;
     }
@@ -74,14 +75,14 @@ export default class MapCanvas extends React.Component {
     // Loop trough all coordinates, draw a dot at each point to form a top-down
     // view of the objects.
     ctx.fillStyle = "#000";
-    points.forEach(point => {
+    map.points.forEach(point => {
       ctx.beginPath();
       ctx.arc(point[1], point[0], 1, 0, 2 * Math.PI);
       ctx.fill();
     });
 
     ctx.fillStyle = "#800000";
-    route.forEach(point => {
+    route.points.forEach(point => {
       ctx.beginPath();
       ctx.arc(point[1], point[0], 1, 0, 2 * Math.PI);
       ctx.fill();
@@ -99,9 +100,8 @@ export default class MapCanvas extends React.Component {
             value={searchOption}
             onChange={(val) => this.setState({ searchOption: val })}
           >
+            <Select value="name">Name</Select>
             <Select value="id">ID</Select>
-            <Select value="version">Version</Select>
-            <Select value="date">Date</Select>
             <Select value="all">All</Select>
           </Select>
           <Input

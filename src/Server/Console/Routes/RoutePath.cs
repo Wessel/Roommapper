@@ -18,6 +18,7 @@ public class RoutePath(ISession cassandraSession): IRoute {
       // any form of user data.
       var queries = new Dictionary<string, Func<string, BoundStatement>> {
         ["id"] = id => cassandraSession.Prepare(@"SELECT * FROM Roommapper.Routes WHERE Id = ?;").Bind(Guid.Parse(id)),
+        ["name"] = name => cassandraSession.Prepare(@"SELECT * FROM Roommapper.Routes WHERE Id = ?;").Bind(name)
       };
 
       var selectStatement = queries
@@ -25,7 +26,7 @@ public class RoutePath(ISession cassandraSession): IRoute {
         .Select(query => query.Value(request.QueryString[query.Key]))
         .FirstOrDefault();
 
-      if (selectStatement == null) throw new Exception("No valid search criteria given, give one of (id).");
+      if (selectStatement == null) throw new Exception("No valid search criteria given, give one of (id, name).");
 
       // Execute the query and return all rows in an array
       var rowSet = cassandraSession.Execute(selectStatement);

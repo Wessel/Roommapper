@@ -12,13 +12,13 @@ public class RouteDatabase(ISession cassandraSession): IRoute {
   /// </summary>
   public HttpResponse Get(HttpRequest request) {
     try {
-
       // Prepare the select statement based on the given criteria
       // If no criteria is given, throw an exception.
       // Using a prepare due to the potential of SQL injection when accepting
       // any form of user data.
       var queries = new Dictionary<string, Func<string, BoundStatement>> {
         ["id"] = id => cassandraSession.Prepare(@"SELECT * FROM Roommapper.Maps WHERE Id = ?;").Bind(Guid.Parse(id)),
+        ["name"] = name => cassandraSession.Prepare(@"SELECT * FROM Roommapper.Maps WHERE Name = ?;").Bind(name),
         ["date"] = date => cassandraSession.Prepare(@"SELECT * FROM roommapper.maps WHERE Date = ?;").Bind(DateTime.Parse(date)),
         ["version"] = version => cassandraSession.Prepare(@"SELECT * FROM roommapper.maps WHERE Version = ?;").Bind(int.Parse(version)),
         ["all"] = _ => cassandraSession.Prepare(@"SELECT * FROM roommapper.maps;").Bind()
@@ -29,7 +29,7 @@ public class RouteDatabase(ISession cassandraSession): IRoute {
         .Select(query => query.Value(request.QueryString[query.Key]))
         .FirstOrDefault();
 
-      if (selectStatement == null) throw new Exception("No valid search criteria given, give one of (id, date, version).");
+      if (selectStatement == null) throw new Exception("No valid search criteria given, give one of (id, date, version, name).");
 
 
       // Execute the query and return all rows in an array
@@ -65,9 +65,9 @@ public class RouteDatabase(ISession cassandraSession): IRoute {
       var uuid = Guid.NewGuid();
 
       var insertStatement = cassandraSession.Prepare(@"
-        INSERT INTO Roommapper.Maps(Id, Date, Version, Objects)
-        VALUES (?, toTimeStamp(now()), ?, ?);
-      ").Bind(uuid, 1, parsedBody.objects);
+        INSERT INTO Roommapper.Maps(Id, Name, Date, Version, Objects)
+        VALUES (?, ?, toTimeStamp(now()), ?, ?);
+      ").Bind(uuid, parsedBody.name, 1, parsedBody.objects);
 
       cassandraSession.Execute(insertStatement);
 
@@ -126,7 +126,8 @@ public class RouteDatabase(ISession cassandraSession): IRoute {
       Id = row.GetValue<Guid>("id").ToString(),
       Objects = $"[{row.GetValue<string>("objects")}]".FromJson<int[][]>(),
       Version = row.GetValue<int>("version"),
-      Date = row.GetValue<DateTime>("date")
+      Date = row.GetValue<DateTime>("date"),
+      Name = row.GetValue<string>("name")
     }).ToList().ToJson();
   }
 }

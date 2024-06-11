@@ -40,10 +40,11 @@ internal static class Program {
     session.Execute(@"
       CREATE TABLE IF NOT EXISTS Roommapper.Maps(
       Id uuid,
-      Objects text,
       Version int,
+      Name text,
+      Objects text,
       Date timestamp,
-      PRIMARY KEY (Id,Version,Date)
+      PRIMARY KEY (Id,Name)
     )");
 
     session.Execute(@"
