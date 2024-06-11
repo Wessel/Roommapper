@@ -51,11 +51,30 @@ export default class MapCanvas extends React.Component {
     }
   }
 
+  async getRoutePoints() {
+    try {
+      const { searchOption, inputValue } = this.state;
+      const url = `${API_ENDPOINT}/database/route?id=${inputValue}`;
+      const data = await (await fetch(url)).json();
+
+      // Combine all found sets into a singular array.
+      const map = [];
+      if (!Array.isArray(data) || data.length < 1) return map;
+      data.forEach((set) => set.Objects.forEach((coord) => map.push(coord)));
+
+      return map;
+    } catch (ex) {
+      return;
+      // this.props.onError(ex);
+    }
+  }
+
   async draw() {
     // Get the 2D context from the canvas element
     const ctx = this.canvasRef.current.getContext('2d');
     // Get the points to draw from the server
     const points = await this.getLinePoints();
+    const route = await this.getRoutePoints();
 
     // Set the font for the text we will draw on the canvas
     ctx.font = "24px Comic Sans MS";
@@ -71,7 +90,15 @@ export default class MapCanvas extends React.Component {
 
     // Loop trough all coordinates, draw a dot at each point to form a top-down
     // view of the objects.
+    ctx.fillStyle = "#000";
     points.forEach(point => {
+      ctx.beginPath();
+      ctx.arc(point[1], point[0], 1, 0, 2 * Math.PI);
+      ctx.fill();
+    });
+
+    ctx.fillStyle = "#800000";
+    route.forEach(point => {
       ctx.beginPath();
       ctx.arc(point[1], point[0], 1, 0, 2 * Math.PI);
       ctx.fill();

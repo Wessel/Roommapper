@@ -9,12 +9,22 @@
   <component name="ChangeListManager">
     <list default="true" id="79f184c3-e88e-45be-9116-5fa813562754" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.REST API/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.REST API/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.REST API/.idea/dataSources/469f6bec-f113-4467-9d39-7ac38558045a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.REST API/.idea/dataSources/469f6bec-f113-4467-9d39-7ac38558045a.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.REST API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.REST API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/public/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web/src/components/controlField.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/src/components/controlField.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web/src/components/layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/src/components/layout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web/src/components/mapCanvas.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/src/components/mapCanvas.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Console/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Console/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/Console" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/Console" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/Console.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/Console.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/Console.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/Console.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibParse.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibParse.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibParse.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibParse.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibServer.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibServer.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibServer.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Console/bin/Debug/net8.0/LibServer.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibParse/bin/Debug/net8.0/LibParse.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LibParse/bin/Debug/net8.0/LibParse.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibParse/bin/Debug/net8.0/LibParse.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/LibParse/bin/Debug/net8.0/LibParse.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibServer/Http/Request.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LibServer/Http/Request.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibServer/bin/Debug/net8.0/LibServer.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LibServer/bin/Debug/net8.0/LibServer.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibServer/bin/Debug/net8.0/LibServer.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/LibServer/bin/Debug/net8.0/LibServer.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REST API.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/REST API.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,34 +52,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.Console.executor": "Run",
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "d452b4e4-aa15-4fa9-847f-33d4d7fab23d.executor": "Run",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "HotReloadSettingsPage",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.Console.executor&quot;: &quot;Run&quot;,
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;d452b4e4-aa15-4fa9-847f-33d4d7fab23d.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;HotReloadSettingsPage&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "cassandra"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;cassandra&quot;
     ],
-    "rider.external.source.directories": [
-      "/home/wessel/.config/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
-      "/home/wessel/.config/JetBrains/Rider2024.1/resharper-host/SourcesCache",
-      "/home/wessel/.local/share/Symbols/src"
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/home/wessel/.config/JetBrains/Rider2024.1/resharper-host/DecompilerCache&quot;,
+      &quot;/home/wessel/.config/JetBrains/Rider2024.1/resharper-host/SourcesCache&quot;,
+      &quot;/home/wessel/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Console" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/Console/bin/Debug/net8.0/Console.exe" />
@@ -118,6 +128,10 @@
       <workItem from="1717492595765" duration="6218000" />
       <workItem from="1717584416884" duration="5757000" />
       <workItem from="1717602912720" duration="1420000" />
+      <workItem from="1717668473610" duration="971000" />
+      <workItem from="1717670832494" duration="901000" />
+      <workItem from="1717673464254" duration="1428000" />
+      <workItem from="1718093417281" duration="1709000" />
     </task>
     <servers />
   </component>

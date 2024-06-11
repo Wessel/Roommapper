@@ -47,7 +47,6 @@ public class HttpRequest {
       catch { return -1; }
     }
 
-
     var querySplit = Route.Split("?");
     if (querySplit.Length == 1) return 0;
 
