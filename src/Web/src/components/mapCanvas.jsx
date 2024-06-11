@@ -33,28 +33,10 @@ export default class MapCanvas extends React.Component {
     this.draw();
   }
 
-  async getLinePoints() {
+  async getLinePoints(endpoint = '') {
     try {
       const { searchOption, inputValue } = this.state;
-      const url = `${API_ENDPOINT}/database?${searchOption}=${inputValue}`;
-      const data = await (await fetch(url)).json();
-
-      // Combine all found sets into a singular array.
-      const map = [];
-      if (!Array.isArray(data) || data.length < 1) return map;
-      data.forEach((set) => set.Objects.forEach((coord) => map.push(coord)));
-
-      return map;
-    } catch (ex) {
-      return;
-      // this.props.onError(ex);
-    }
-  }
-
-  async getRoutePoints() {
-    try {
-      const { searchOption, inputValue } = this.state;
-      const url = `${API_ENDPOINT}/database/route?id=${inputValue}`;
+      const url = `${API_ENDPOINT}/database/${endpoint}?${searchOption}=${inputValue}`;
       const data = await (await fetch(url)).json();
 
       // Combine all found sets into a singular array.
@@ -74,7 +56,8 @@ export default class MapCanvas extends React.Component {
     const ctx = this.canvasRef.current.getContext('2d');
     // Get the points to draw from the server
     const points = await this.getLinePoints();
-    const route = await this.getRoutePoints();
+    const route = await this.getLinePoints("path");
+    // const route = await this.getRoutePoints();
 
     // Set the font for the text we will draw on the canvas
     ctx.font = "24px Comic Sans MS";

@@ -6,9 +6,9 @@ using Console.JsonClasses;
 
 namespace Console.Routes;
 
-public class RouteMap(ISession cassandraSession): IRoute {
+public class RoutePath(ISession cassandraSession): IRoute {
   /// <summary>
-  ///  GET request for the database/mapped route, return a map based on given criteria.
+  ///  GET request for the database/path route, return a path of a map based on given criteria.
   /// </summary>
   public HttpResponse Get(HttpRequest request) {
     try {
@@ -27,7 +27,6 @@ public class RouteMap(ISession cassandraSession): IRoute {
 
       if (selectStatement == null) throw new Exception("No valid search criteria given, give one of (id).");
 
-
       // Execute the query and return all rows in an array
       var rowSet = cassandraSession.Execute(selectStatement);
 
@@ -43,8 +42,8 @@ public class RouteMap(ISession cassandraSession): IRoute {
   }
 
   /// <summary>
-  ///  POST request for the database route, insert a new map containing
-  ///  object data into the database.
+  ///  POST request for the database/path route, insert a new path containing
+  ///  routing data into the database.
   /// </summary>
   public HttpResponse Post(HttpRequest request) {
     try {
@@ -53,6 +52,22 @@ public class RouteMap(ISession cassandraSession): IRoute {
       var parsedBody = request.Body?.FromJson<Data>();
       if (parsedBody?.objects == null) {
         throw new Exception("objectData is null");
+      }
+
+      if (parsedBody?.id == null) {
+        throw new Exception("id is null");
+      }
+
+      var selectStatement =
+        parsedBody?.id != null ? cassandraSession.Prepare(@"SELECT * FROM Roommapper.Maps WHERE Id = ?;")
+            .Bind(Guid.Parse(parsedBody.id)) :
+          throw new Exception("No valid search criteria given, give one of (id).");
+
+      // Execute the query and return all rows in an array
+      var rowSet = cassandraSession.Execute(selectStatement);
+
+      if (rowSet.IsExhausted()) {
+        throw new Exception("No matching map found with the given criteria.");
       }
 
       // Prepare the insert statement, bind the values, and execute the query
