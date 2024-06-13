@@ -6,9 +6,9 @@ using Console.JsonClasses;
 
 namespace Console.Routes;
 
-public class RouteDatabase(ISession cassandraSession): IRoute {
+public class RoutePath(ISession cassandraSession): IRoute {
   /// <summary>
-  ///  GET request for the database route, return a map based on given criteria.
+  ///  GET request for the database/path route, return a path of a map based on given criteria.
   /// </summary>
   public HttpResponse Get(HttpRequest request) {
     try {
@@ -17,11 +17,8 @@ public class RouteDatabase(ISession cassandraSession): IRoute {
       // Using a prepare due to the potential of SQL injection when accepting
       // any form of user data.
       var queries = new Dictionary<string, Func<string, BoundStatement>> {
-        ["id"] = id => cassandraSession.Prepare(@"SELECT * FROM Roommapper.Maps WHERE Id = ?;").Bind(Guid.Parse(id)),
-        ["name"] = name => cassandraSession.Prepare(@"SELECT * FROM Roommapper.Maps WHERE Name = ?;").Bind(name),
-        ["date"] = date => cassandraSession.Prepare(@"SELECT * FROM roommapper.maps WHERE Date = ?;").Bind(DateTime.Parse(date)),
-        ["version"] = version => cassandraSession.Prepare(@"SELECT * FROM roommapper.maps WHERE Version = ?;").Bind(int.Parse(version)),
-        ["all"] = _ => cassandraSession.Prepare(@"SELECT * FROM roommapper.maps;").Bind()
+        ["id"] = id => cassandraSession.Prepare(@"SELECT * FROM Roommapper.Routes WHERE Id = ?;").Bind(Guid.Parse(id)),
+        ["name"] = name => cassandraSession.Prepare(@"SELECT * FROM Roommapper.Routes WHERE Id = ?;").Bind(name)
       };
 
       var selectStatement = queries
@@ -29,8 +26,7 @@ public class RouteDatabase(ISession cassandraSession): IRoute {
         .Select(query => query.Value(request.QueryString[query.Key]))
         .FirstOrDefault();
 
-      if (selectStatement == null) throw new Exception("No valid search criteria given, give one of (id, date, version, name).");
-
+      if (selectStatement == null) throw new Exception("No valid search criteria given, give one of (id, name).");
 
       // Execute the query and return all rows in an array
       var rowSet = cassandraSession.Execute(selectStatement);
@@ -47,8 +43,8 @@ public class RouteDatabase(ISession cassandraSession): IRoute {
   }
 
   /// <summary>
-  ///  POST request for the database route, insert a new map containing
-  ///  object data into the database.
+  ///  POST request for the database/path route, insert a new path containing
+  ///  routing data into the database.
   /// </summary>
   public HttpResponse Post(HttpRequest request) {
     try {
@@ -59,15 +55,31 @@ public class RouteDatabase(ISession cassandraSession): IRoute {
         throw new Exception("objectData is null");
       }
 
+      if (parsedBody?.id == null) {
+        throw new Exception("id is null");
+      }
+
+      var selectStatement =
+        parsedBody?.id != null ? cassandraSession.Prepare(@"SELECT * FROM Roommapper.Maps WHERE Id = ?;")
+            .Bind(Guid.Parse(parsedBody.id)) :
+          throw new Exception("No valid search criteria given, give one of (id).");
+
+      // Execute the query and return all rows in an array
+      var rowSet = cassandraSession.Execute(selectStatement);
+
+      if (rowSet.IsExhausted()) {
+        throw new Exception("No matching map found with the given criteria.");
+      }
+
       // Prepare the insert statement, bind the values, and execute the query
       // Using a prepare due to the potential of SQL injection when accepting
       // any form of user data.
-      var uuid = Guid.NewGuid();
+      var uuid = Guid.Parse(parsedBody.id);
 
       var insertStatement = cassandraSession.Prepare(@"
-        INSERT INTO Roommapper.Maps(Id, Name, Date, Version, Objects)
-        VALUES (?, ?, toTimeStamp(now()), ?, ?);
-      ").Bind(uuid, parsedBody.name, 1, parsedBody.objects);
+        INSERT INTO Roommapper.Routes(Id, path)
+        VALUES (?, ?);
+      ").Bind(uuid, parsedBody.objects);
 
       cassandraSession.Execute(insertStatement);
 
@@ -92,7 +104,7 @@ public class RouteDatabase(ISession cassandraSession): IRoute {
       // Using a prepare due to the potential of SQL injection when accepting
       // any form of user data.
       var selectStatement =
-        parsedBody?.id != null ? cassandraSession.Prepare(@"SELECT * FROM Roommapper.Maps WHERE Id = ?;")
+        parsedBody?.id != null ? cassandraSession.Prepare(@"SELECT * FROM Roommapper.Routes WHERE Id = ?;")
           .Bind(Guid.Parse(parsedBody.id)) :
         throw new Exception("No valid search criteria given, give one of (id).");
 
@@ -104,7 +116,7 @@ public class RouteDatabase(ISession cassandraSession): IRoute {
       }
 
       // Prepare and execute delete statement
-      var deleteStatement = cassandraSession.Prepare(@"DELETE FROM Roommapper.Maps WHERE Id = ?;")
+      var deleteStatement = cassandraSession.Prepare(@"DELETE FROM Roommapper.Routes WHERE Id = ?;")
         .Bind(Guid.Parse(parsedBody.id));
 
       cassandraSession.Execute(deleteStatement);
@@ -124,10 +136,7 @@ public class RouteDatabase(ISession cassandraSession): IRoute {
   private string RowsToString(RowSet rowSet) {
     return rowSet.Select(row => new RowData {
       Id = row.GetValue<Guid>("id").ToString(),
-      Objects = $"[{row.GetValue<string>("objects")}]".FromJson<int[][]>(),
-      Version = row.GetValue<int>("version"),
-      Date = row.GetValue<DateTime>("date"),
-      Name = row.GetValue<string>("name")
+      Objects = $"[{row.GetValue<string>("path")}]".FromJson<int[][]>()
     }).ToList().ToJson();
   }
 }

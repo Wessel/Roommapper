@@ -19,6 +19,7 @@ internal static class Program {
       { "", new Root() },
       { "database", new RouteDatabase(cassandraSession) },
       { "database/metadata", new RouteMetadata(cassandraSession) },
+      { "database/path", new RoutePath(cassandraSession) },
       { "roomba/control", new RouteControl() }
     };
 
@@ -39,10 +40,18 @@ internal static class Program {
     session.Execute(@"
       CREATE TABLE IF NOT EXISTS Roommapper.Maps(
       Id uuid,
-      Objects text,
       Version int,
+      Name text,
+      Objects text,
       Date timestamp,
-      PRIMARY KEY (Id,Version,Date)
+      PRIMARY KEY (Id,Name)
+    )");
+
+    session.Execute(@"
+      CREATE TABLE IF NOT EXISTS Roommapper.Routes(
+      Id uuid,
+      Path text,
+      PRIMARY KEY (Id)
     )");
   }
 }
