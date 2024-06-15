@@ -2,9 +2,9 @@ using Cassandra;
 using LibParse.Json;
 using LibServer.Http;
 using LibServer.Router;
-using Console.JsonClasses;
+using RobotControlServer.JsonClasses;
 
-namespace Console.Routes;
+namespace RobotControlServer.Routes;
 
 public class RoutePath(ISession cassandraSession): IRoute {
   /// <summary>

@@ -1,4 +1,4 @@
-namespace Console.JsonClasses;
+namespace RobotControlServer.JsonClasses;
 
 public class ControlRequest {
   public string task;

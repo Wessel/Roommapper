@@ -1,4 +1,4 @@
-namespace Console;
+namespace RobotControlServer;
 
 using Routes;
 using LibServer;

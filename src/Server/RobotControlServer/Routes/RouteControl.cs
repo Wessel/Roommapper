@@ -3,9 +3,9 @@ using System.Text;
 using LibParse.Json;
 using LibServer.Http;
 using LibServer.Router;
-using Console.JsonClasses;
+using RobotControlServer.JsonClasses;
 
-namespace Console.Routes;
+namespace RobotControlServer.Routes;
 
 public class RouteControl: IRoute {
   Dictionary<string, Dictionary<string, string>> _routes = new() {

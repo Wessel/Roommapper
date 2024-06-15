@@ -1,4 +1,4 @@
-namespace Console.JsonClasses;
+namespace RobotControlServer.JsonClasses;
 
 // Data class for casting a JSON string into
 public class Data {

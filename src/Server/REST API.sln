@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console", "Console\Console.csproj", "{FCF181D7-7D8A-4DDD-80E0-C66EBEFD8D13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotControlServer", "RobotControlServer\RobotControlServer.csproj", "{FCF181D7-7D8A-4DDD-80E0-C66EBEFD8D13}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibServer", "LibServer\LibServer.csproj", "{7EF92BDA-67F9-4A14-9267-087875E0EAB9}"
 EndProject
