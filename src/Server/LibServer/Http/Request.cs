@@ -4,17 +4,16 @@ public class HttpRequest {
   private const string LogPrefix = "\u001b[47m[ WWW ]\u001b[0m";
 
   public string? Route;
-  public string? _httpVersion, _host, _body, _header;
-  public Method? _method;
-  public Dictionary<string, string> QueryString = new();
+  private string? _httpVersion, _host, _header;
+  public readonly Dictionary<string, string> QueryString = new();
 
-  public Method? Method => _method;
-  public string? Body => _body;
+  public Method? Method { get; private set; }
+  public string? Body { get; private set; }
 
   public int Parse(string raw) {
     // _body starts after 2 new lines, cast to `_body`
     var body = raw.Split("\r\n\r\n");
-    _body = body.Length > 1 ? string.Join("\r\n\r\n", body.Skip(1).ToArray()) : "";
+    Body = body.Length > 1 ? string.Join("\r\n\r\n", body.Skip(1).ToArray()) : "";
 
     // Split the raw request into parts (one line per part)
     var parts = raw.Split("\r\n");
@@ -27,7 +26,7 @@ public class HttpRequest {
         if (i == 0) {
           if (!parts[0].Contains("HTTP")) return -1;
           var first = parts[0].Split(" ");
-          _method = MethodClass.StringToMethod(first[0].ToUpper());
+          Method = MethodClass.StringToMethod(first[0].ToUpper());
           Route = first[1];
           _httpVersion = first[2].Split("/")[1];
         } else {
@@ -67,8 +66,8 @@ public class HttpRequest {
     Console.WriteLine("{0} _httpVersion:\t{1}", LogPrefix, _httpVersion);
     Console.WriteLine("{0} _host:\t\t{1}", LogPrefix, _host);
     Console.WriteLine("{0} Route:\t\t{1}", LogPrefix, Route);
-    Console.WriteLine("{0} _method:\t\t{1}", LogPrefix, _method);
+    Console.WriteLine("{0} _method:\t\t{1}", LogPrefix, Method);
     Console.WriteLine("{0} _headers:\n{1}", LogPrefix, _header);
-    Console.WriteLine("{0} _body:\n{1}", LogPrefix, _body);
+    Console.WriteLine("{0} _body:\n{1}", LogPrefix, Body);
   }
 }

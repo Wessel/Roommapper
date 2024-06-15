@@ -330,6 +330,20 @@ version: 3.1.0
    robot nogmaals herschrijven maar nu met de nieuwe libraries. Ook zullen alle
    benodigde routes geimplementeert worden om de Server set af te maken.
 
-* [XVII   06-06-2024] UML diagrammen bijgewerkt
-   Nu de broncode van de Server en WebUI compleet zijn heb ik de UML diagrammen
-   bijgewerkt om overeen te komen met de broncode.
+
+* [XVII   11-06-2024] Route planning toegevoegd
+   Nu er met Tom afgepsroken is om de routes net zoals de objecten op te slaan,
+   heb ik een endpoint gemaakt die het zelfde werkt als de mapping, maar dan voor
+   de routes. Ook heb ik een endpoint gemaakt die de route op de kaart tekent
+   voor de webUI.
+
+** Map identificatie
+   In eerste instantie gebruikte ik steeds de `Id` van een map om hem te
+   identificeren. In de praktijk is dit helemaal niet handig, dus daarom ben ik
+   overgestapt op het gebruik van gebruiker invulbare namen. Dit maakt het veel
+   makkelijker om een bepaalde map te laten zien.
+
+* [XVII   15-06-2024] UML diagrammen bijgewerkt
+   Nu de broncode van de Server compleet zijn heb ik de UML diagrammen
+   bijgewerkt om overeen te komen met de broncode. Ook heb ik de desbetreffende
+   modules bij elkaar gegroepeerd en de correcte lijntjes getrokken.

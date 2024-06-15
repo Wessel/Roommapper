@@ -56,14 +56,14 @@ public class RouteControl: IRoute {
   }
 
   // @todo(wessel): Rewrite, move to other class
-  public void SendHttpRequest(string Host, string body, string method, string route) {
+  private void SendHttpRequest(string target, string body, string method, string route) {
     using (TcpClient client = new TcpClient()) {
-      string[] host = Host.Split(":");
+      string[] host = target.Split(":");
       client.Connect(host[0], int.Parse(host[1].Split("/")[0]));
 
       using (NetworkStream stream = client.GetStream()) {
         string httpRequestMessage = $"{method} {route} HTTP/1.1\r\n" +
-                                    $"Host: {Host}\r\n" +
+                                    $"Host: {target}\r\n" +
                                     $"Content-Length: {body.Length}\r\n" +
                                     "\r\n" +
                                     $"{body}";

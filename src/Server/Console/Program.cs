@@ -7,13 +7,7 @@ using Cassandra;
 
 internal static class Program {
   public static void Main() {
-    var cluster = Cluster.Builder()
-      .AddContactPoints("127.0.0.1")
-      .WithPort(9042)
-      .Build();
-    var cassandraSession = cluster.Connect();
-
-    InitializeDatabase(cassandraSession);
+    var cassandraSession = InitializeDatabase();
 
     Dictionary<string, IRoute> routes = new() {
       { "", new Root() },
@@ -34,7 +28,13 @@ internal static class Program {
     }
   }
 
-  private static void InitializeDatabase(ISession session) {
+  private static ISession InitializeDatabase() {
+    var cluster = Cluster.Builder()
+      .AddContactPoints("127.0.0.1")
+      .WithPort(9042)
+      .Build();
+    var session = cluster.Connect();
+
     session.Execute(@"CREATE KEYSPACE IF NOT EXISTS roommapper
       WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'datacenter1' : 1 };");
     session.Execute(@"
@@ -53,5 +53,7 @@ internal static class Program {
       Path text,
       PRIMARY KEY (Id)
     )");
+
+    return session;
   }
 }
