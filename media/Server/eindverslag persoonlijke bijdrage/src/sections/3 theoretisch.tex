@@ -1,0 +1,127 @@
+\section{theoretisch Kader}
+\label{sec:theoretisch kader}
+
+\subsection{API-Architecturen}
+API's (Application Programming Interfaces) zijn onmisbare componenten in moderne
+software. Deze API's maken de communicatie tussen verschillende
+softwarecomponenten mogelijk.\cite{Souza_2012}
+
+Er zijn over de jaren vele verschillende manieren bedacht voor het ontwerpen
+en implementeren van API's, elk met zijn eigen voordelen en nadelen.
+\cite{Śliwa_Pańczyk_2021}
+
+Dit hoofdstuk zal vier van de meest gebruikte API architecturen bespreken.
+
+\subsection{RESTful (Representational State Transfer)}
+\label{ssec:rest}
+REST is een architectuur dat wordt gebruikt voor het communiceren van gegevens
+om netwerkapplicaties te ontwerpen.
+
+Het maakt gebruik van standaard HTTP-methoden (zoals GET, POST, PUT, DELETE)
+om gegevens te communiceren tussen clients en servers.\cite{masse2011}
+
+Door de simpiliciteit en het al gebruik maken van de bestaande HTTP protocollen
+is REST een populaire keuze voor API's. Dit maakt het ook erg geschikt voor
+web gebaseerde applicaties.
+
+\subsubsection{Voordelen van REST}
+\label{sssec:voordelen en nadelen van rest}
+\begin{enumerate}
+  \item \textbf{Eenvoudige structuur} --- gebaseerd op standaard HTTP-methoden
+   en JSON
+  \item \textbf{Makkelijke implementatie} --- meeste talen ondersteunen de basis
+   van webrequests en JSON serialisatie al
+  \item \textbf{Schaalbaarheid} --- RESTful API's zijn stateless en kunnen
+   eenvoudig horizontaal geschaald worden, echter zal de prestatie wel minder
+   zijn dan andere methodes zoals gRPC of GraphQL.\cite{Śliwa_Pańczyk_2021}
+\end{enumerate}
+
+\subsubsection{Nadelen van REST}
+Echter heeft REST ook zijn nadelen, sommige hiervan zijn:
+\begin{enumerate}
+  \item \textbf{Overbodig veel data} --- Minder geschikt voor complexere query's
+   en datastructuren (over-fetching en under-fetching)
+  \item \textbf{Documentatie} --- Geen directe ondersteuning voor documentatie,
+   schemas en typecontrole
+  \item \textbf{Real-time} --- Doordat de connectie niet levend wordt gehouden nadat
+   de aanvrag is afgehandeld is het minder geschikt voor real-time communicatie.
+\end{enumerate}
+
+\subsection{SOAP (Simple Object Access Protocol)}
+SOAP is een protocol voor uitwisseling van informatie netzoals REST vermeld in
+\autoref{ssec:rest}. Echter is SOAP meer complex en minder populair dan REST.
+
+SOAP maakt gebruik van XML voor het sturen van berichten en ondersteunt
+in tegenstelling tot REST verschillende transportprotocollen zoals
+HTTP en SMTP. SOAP biedt ook robuuste beveiligings- en transactiebeheerfuncties
+wat REST niet zo maar heeft.\cite{Śliwa_Pańczyk_2021,w3c}
+
+\subsubsection{Voordelen van SOAP}
+\begin{enumerate}
+    \item \textbf{Beveiliging} --- Sterke beveiligingsfuncties met behulp van
+    WS-Security en ondersteuning voor ACID transacties.
+\end{enumerate}
+
+\subsubsection{Nadelen van SOAP}
+Net zoals REST heeft SOAP ook zijn nadelen:
+\begin{enumerate}
+    \item \textbf{Ingewikkeld formaat} --- Complexiteit en overhead door XML-berichten
+    \item \textbf{Prestatieproblemen} --- Langzamere prestaties vergeleken met REST
+\end{enumerate}
+
+\subsection{GraphQL}
+GraphQL is een querytaal voor API's die is ontwikkeld door Facebook in 2012\cite{facebook}.
+In tegenstelling tot REST en SOAP, waarbij de server bepaalt welke gegevens
+worden geretourneerd, stelt GraphQL clients in staat om een specifieke set data
+op te vragen. Ook biedt GraphQL een sterke typecontrole en introspectie aan door
+middel van schemas.\cite{Hartig}
+
+\subsubsection{Voordelen van GraphQL}
+Voordelen van GraphQL:
+\begin{enumerate}
+    \item \textbf{Efficiëntie} --- Door de query aard van GraphQL is het
+     makkelijk om snel en flexibele bepaalde stukken data aan te vragen.
+    \item \textbf{Gegevensbesparing} --- Omdat de gebruiker alleen maar de
+     gegevens ontvangt die zij nodig hebben, vermindert dit over-fetching en
+     under-fetching waardoor er meer bandbreedte en rekenkracht wordt bespaard.\cite{Hartig}
+    \item \textbf{Documentatie} --- Sterke typecontrole en introspectie door het
+     gebruik van schemas.
+     \item \textbf{compatibiliteit} --- Ook al is het niet gewenst, GraphQL
+      is compatibiel met RESTful clients, hierdoor kan de implementatie vrij
+      simpel zijn als de kracht van GraphQL niet nodig is.
+\end{enumerate}
+
+\subsubsection{Nadelen van GraphQL}
+Nadelen van GraphQL:
+\begin{enumerate}
+    \item \textbf{Intergratie} --- Door de aard van GraphQL is de
+     serverimplementatie veel complexer, en daarom ook aangeraden om een library
+     te gebruiken.
+    \item \textbf{Complexiteit} --- Mogelijkheid van te complexe queries die
+     de serverbelasting verhogen
+\end{enumerate}
+
+\subsection{gRPC (Google Remote Procedure Call)}
+gRPC is een modern RPC-framework dat in 2016 door Google is ontwikkeld. Het maakt
+gebruik van HTTP/2 voor transport, Protocol Buffers voor berichtserialisatie en
+biedt functies zoals load balancing en monitoring. Door zijn load balancing
+functies is gRPC zeer geschikt voor high-performance en real-time communicatie.\cite{google,Śliwa_Pańczyk_2021}
+
+Echter is het wel de moeilijkste methoden om te implementeren en te onderhouden.
+
+\subsubsection{Voordelen van gRPC}
+\begin{enumerate}
+    \item \textbf{Prestatie} --- Hoge prestaties door het gebruik van protocol
+     buffers, berichten zijn tot 30\% kleiner dan JSON.
+    \item \textbf{Real-time} --- In tegenstelling tot REST, GraphQL en SOAP
+     is gRPC wel geschikt voor real-time communicatie
+\end{enumerate}
+
+\subsubsection{Nadelen van gRPC}
+\begin{enumerate}
+    \item \textbf{Complexiteit} --- Complexer dan alle andere methodes vermeld
+     om op te zetten en te debuggen
+     \item \textbf{Limitaties} --- Door het vele gebruik van HTTP/2.0 is het niet
+      compatibel met oudere web browsers. Ook is er veel minder bekend over gRPC
+      dan de andere methodes door zijn relatief nieuwe staat.
+\end{enumerate}

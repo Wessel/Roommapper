@@ -1,0 +1,31 @@
+\section{Probleemstelling}
+\label{sec: Probleemstelling}
+
+In het project is het belangrijk dat de gebruiker op afstand can communiceren
+met de mapping robot. De robot moet de commando's van de gebruiker kunnen
+ontvangen en uitvoeren.
+
+De gebruiker moet ook kunnen zien wat de robot allemaal gemapt heeft, om
+eventueel in te grijpen als dit niet klopt.
+
+De robot vereist een structuele manier om deze gegevens uit te wisselen, en
+de optie om meerdere robots tegelijkertijd te besturen. De aandachtspunten
+hiervoor zijn:
+
+\subsection{Toegankelijkheid van de diverse functies}
+Het interface dat de gebruiker ziet moet alle verzamelde data laten zien.
+Hij zal de mapping en de geplande route moeten presenteren in een overzichtelijke
+manier. Ook moet de robot diverse commando's vanuit de gebruiker kunnen ontvangen
+om zo de gewenste taken uit te kunnen voeren.
+
+\subsection{Schaalbaarheid en Prestaties}
+Naarmate het project groeit, moeten de communicatie kanalen tussen de verschillende
+componenten schaalbaar blijven zonder dat dit ten koste gaat van de prestaties.
+Dit betekent dat de gekozen API-oplossing in staat moet zijn om een toenemend aantal
+verzoeken af te handelen zonder vertragingen of systeemuitval.
+
+\subsection{Onderhoudbaarheid en Uitbreidbaarheid}
+De gekozen API-architectuur moet eenvoudig te onderhouden zijn, met een heldere
+en overzichtelijke structuur. De architectuur moet ook felxiebel genoeg zijn
+om toevoegingen en aanpassingen te ondersteunen zonder dat het codebase herschreven
+moet worden.

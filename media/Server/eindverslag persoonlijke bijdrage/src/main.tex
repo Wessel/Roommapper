@@ -1,15 +1,8 @@
-\documentclass[10pt]{article}
+\documentclass[conference]{IEEEtran}
 
-%/ Use case: margins
-\usepackage[letterpaper,
-  top=2cm,
-  bottom=2cm,
-  left=2cm,
-  right=2cm,
-  marginparwidth=1.75cm]{geometry}
 %/ Use case: language and spell checking
 \usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
+\usepackage[dutch]{babel}
 %/ Use case: uppercase headers
 \usepackage{titlecaps}
 \usepackage{sectsty}
@@ -29,31 +22,54 @@
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
 
+\graphicspath{ {./img/} }
+
 \pgfplotsset{compat=1.18}
 
 \allsectionsfont{\mdseries\scshape}
 
-\title{\titlecap{\scshape Title}}\normalfont
-\author{Wessel Tip $<$contact@wessel.gg$>$ (Student number 696770, \url{https://wessel.gg/})}
-\date{Computer Engineering at InHolland University of Applied Sciences\linebreak Year 2, Semester 2 (Jan. 2024 - Jun. 2024)}
+\title{\titlecap{\scshape Vergelijking van API architecturen voor de API Server van het Project Robotica}}\normalfont
+\author{\IEEEauthorblockN{Wessel Tip $<$contact@wessel.gg$>$ (Student nummer 696770, \url{https://wessel.gg/})}
+\IEEEauthorblockA{
+Technische Informatica --- Project Robotica \\
+Hoogeschool Inholland Alkmaar \\
+ Jaar 2, Semester 2 (Jan. 2024 - Jun. 2024)
+}}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-In dit verslag zal de ontwikkeling van mijn persoonlijke bijdrage aan het project
-Robotica worden besproken. Mijn persoonlijke bijdrage zal de communicatie tussen
-de gebruiker, de robot en een aparte dataserver beheren.
+In dit verslag zal besproken worden waarom er is gekozen om een RESTful API
+te maken voor het project Robotica.
 
-Het hele project zal in Csharp worden geschreven door zijn objectgeoriënteerde aard.
+De toegankelijkheid en schaalbaarheid van de API-architecturen REST, SOAP,
+GraphQL en gRPC zullen worden vergeleken om uiteindelijk op de conclusie te
+komen waarom REST gebruikt word.
 \end{abstract}
 
 \tableofcontents
 
-\input{sections/1 introduction}
+\input{sections/1 inleiding}
+\input{sections/2 probleemstelling.tex}
+\input{sections/3 theoretisch.tex}
+\input{sections/4 conclusie.tex}
 
+
+\section*{Erkenningen}
+\label{sec:erkenningen}
+De auteur wilt graag de volgende mensen bedanken voor hun contributie bij het schrijven van dit verslag:
+\begin{itemize}
+  \item[] \makebox[3.2cm]{\textbf{Buurman, W. J.}\hfill} Groepsgenoot
+  \item[] \makebox[3.2cm]{\textbf{Slikker, T.}\hfill} Groepsgenoot
+  \item[] \makebox[3.2cm]{\textbf{Ottens, N.}\hfill} Begeleiding
+  \item[] \makebox[3.2cm]{\textbf{Tilmann, K.}\hfill} Begeleiding
+\end{itemize}
+
+\label{sec:referenties}
 \bibliographystyle{IEEEtran}
-\bibliography{references.bib}
+\bibliography{references}
+% \nocite{*}
 
 \end{document}

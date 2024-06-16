@@ -1,1 +1,109 @@
-
+@book{masse2011,
+  title        = {
+    REST API design rulebook designing consistent restful web service
+    interfaces mark massee. ed.: Simon St. Laurent
+  },
+  author       = {Massee, Mark},
+  year         = {2011},
+  publisher    = {OReilly},
+  url          = {
+    https://books.google.nl/books?id=eABpzyTcJNIC&lpg=PR3&ots=vBPD3-ldKC&dq=restful%20api&lr&hl=nl&pg=PP1#v=onepage&q=restful%20api&f=false
+  },
+  note         = {Geraadpleegd op Juni 8, 2024},
+  place        = {Beijing}
+}
+@article{Śliwa_Pańczyk_2021,
+  title        = {
+    Performance comparison of programming interfaces on the example of REST
+    API, GraphQL and gRPC
+  },
+  author       = {Śliwa, Mariusz and Pańczyk, Beata},
+  year         = {2021},
+  month        = {Dec.},
+  journal      = {Journal of Computer Sciences Institute},
+  volume       = {21},
+  doi          = {10.35784/jcsi.2744},
+  url          = {https://ph.pollub.pl/index.php/jcsi/article/view/2744},
+  note         = {Geraadpleegd op Juni 10, 2024},
+  abstractnote = {
+    &amp;lt;p&amp;gt;The article presents a comparison of the performance of
+    three ways of implementing programming interfaces used in web applications
+    - REST, GraphQL and gRPC. For the purposes of the research, three
+    applications were developed, which were made in each of the indicated
+    technologies and with the same functionalities. The applications were used
+    for performance tests carried out with the use of the k6 tool. The
+    applications are used to measure the execution time, performance and volume
+    of processed data during display and adding operations. The obtained
+    results allowed for the conclusion that the best interface in terms of
+    performance (measured as the number of transactions per second) and server
+    response time is REST. However, in terms of the smallest data volume, gRPC
+    is the best choice.&amp;lt;/p&amp;gt;
+  }
+}
+@misc{Souza_2012,
+  title        = {Evaluating application programming interfaces as communication artefacts},
+  author       = {
+    Afonso, Luiz Marquez and F. de G. Cerqueira, Renato and de Souza, Clarisse
+    Sieckenius
+  },
+  year         = {2012},
+  url          = {http://www3.serg.inf.puc-rio.br/docs/MarquesPPIG2012.pdf},
+  note         = {Geraadpleegd op Juni 6, 2024}
+}
+@misc{facebook,
+  title        = {GraphQL: A query language for your API},
+  author       = {Facebook},
+  url          = {https://graphql.org},
+  note         = {Geraadpleegd op Juni 14, 2024}
+}
+@misc{w3c,
+  title        = {SOAP Version 1.2 Part 1: Messaging Framework Second Edition},
+  author       = {World Wide Web Consortium W3C},
+  url          = {https://www.w3.org/TR/soap12-part1/},
+  note         = {Geraadpleegd op Juni 15, 2024}
+}
+@misc{google,
+  title        = {gRPC - A high-performance, open source universal RPC framework},
+  author       = {Google},
+  url          = {https://grpc.io/},
+  note         = {Geraadpleegd op Juni 16, 2024}
+}
+@inproceedings{Hartig,
+  title        = {Semantics and Complexity of GraphQL},
+  author       = {Hartig, Olaf and Perez, Jorge},
+  year         = {2018},
+  booktitle    = {Proceedings of the 2018 World Wide Web Conference},
+  location     = {Lyon, France},
+  publisher    = {International World Wide Web Conferences Steering Committee},
+  address      = {Republic and Canton of Geneva, CHE},
+  series       = {WWW '18},
+  pages        = {1155–1164},
+  doi          = {10.1145/3178876.3186014},
+  isbn         = {9781450356398},
+  url          = {https://doi.org/10.1145/3178876.3186014},
+  note         = {Geraadpleegd op Juni 12, 2024},
+  abstract     = {
+    GraphQL is a recently proposed, and increasingly adopted, conceptual
+    framework for providing a new type of data access interface on the Web. The
+    framework includes a new graph query language whose semantics has been
+    specified informally only. This has prevented the formal study of the main
+    properties of the language. We embark on the formalization and study of
+    GraphQL. To this end, we first formalize the semantics of GraphQL queries
+    based on a labeled-graph data model. Thereafter, we analyze the language
+    and show that it admits really efficient evaluation methods. In particular,
+    we prove that the complexity of the GraphQL evaluation problem is
+    NL-complete. Moreover, we show that the enumeration problem can be solved
+    with constant delay. This implies that a server can answer a GraphQL query
+    and send the response byte-by-byte while spending just a constant amount of
+    time between every byte sent. Despite these positive results, we prove that
+    the size of a GraphQL response might be prohibitively large for an internet
+    scenario. We present experiments showing that current practical
+    implementations suffer from this issue. We provide a solution to cope with
+    this problem by showing that the total size of a GraphQL response can be
+    computed in polynomial time. Our results on polynomial-time size
+    computation plus the constant-delay enumeration can help developers to
+    provide more robust GraphQL interfaces on the Web.
+  },
+  numpages     = {10},
+  keywords     = {web queries, query language, JSON, GraphQL}
+}
