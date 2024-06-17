@@ -14,11 +14,8 @@ internal static class Program {
       { "home", new HomeRoute() },
     };
 
-    var tcpServer = new Server(5000);
+    var tcpServer = new Server(5050);
     var router = new Router(routes, "api/v1");
-
-    // EXPERIMENTAL! Current code is only meant to be used as REST API.
-    // router.RouteDirectory("D:\\Documents\\[01] Development\\[00] HTML\\[00] portfolio\\v6");
 
     while (tcpServer.Listening) {
       tcpServer.AwaitMessage(router.Handler);

@@ -3,8 +3,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Server\LibParse\LibParse.csproj" />
     <ProjectReference Include="..\..\..\Server\LibServer\LibServer.csproj" />
-    <ProjectReference Include="..\LibParse\LibParse.csproj" />
-    <ProjectReference Include="..\LibServer\LibServer.csproj" />
   </ItemGroup>
 
   <ItemGroup>
