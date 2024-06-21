@@ -35,7 +35,6 @@ export default class MapCanvas extends React.Component {
 
   async getLinePoints(endpoint = '', altKey, altVal) {
     try {
-      const { searchOption, inputValue } = this.state;
       const key = altKey || this.state.searchOption;
       const val = altVal || this.state.inputValue;
       const url = `${API_ENDPOINT}/database/${endpoint}?${key}=${val}`;

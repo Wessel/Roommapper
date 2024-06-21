@@ -12,13 +12,16 @@ public class RouteControl: IRoute {
     {
       "roomba", new() {
         {
-          "start", "127.0.0.1:5000/api/v1/database/metadata"
+          "start", "127.0.0.1:5050/api/v1/start"
+          //          "start", "127.0.0.1:5000/api/v1/database/metadata"
         },
         {
-          "stop", "127.0.0.1:5000/api/v1/database/metadata"
+          "stop", "127.0.0.1:5050/api/v1/stop"
+          // "stop", "127.0.0.1:5000/api/v1/database/metadata"
         },
         {
-          "map", "127.0.0.1:5000/api/v1/database/metadata"
+          "map", "127.0.0.1:5050/api/v1/map"
+          // "map", "127.0.0.1:5000/api/v1/database/metadata"
         }
       }
     }
