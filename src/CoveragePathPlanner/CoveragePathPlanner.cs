@@ -32,7 +32,7 @@ public class CoveragePathPlanner
 
   public void AddObstacleCell(int x, int y)
   {
-    _obstacles.Add(new Obstacle { X = x, Y = y, Width = 0, Height = 0, IsRectangle = false });
+    _obstacles.Add(new Obstacle { X = x, Y = y, Width = 1, Height = 1, IsRectangle = false });
   }
 
   public List<Point> PlanPath()

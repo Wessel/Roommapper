@@ -27,7 +27,7 @@ public class RoutePlan: IRoute {
       CoveragePathPlanner planner = new CoveragePathPlanner(500, 500);
 
       // Add obstacles cell by cell
-      foreach (var obj in parsedBody?.objects)
+      foreach (var obj in $"[{parsedBody?.objects}]".FromJson<int[][]>())
       {
         planner.AddObstacleCell(obj[0], obj[1]); // Get x and y for every coordinate in the parsedbody array
       }
