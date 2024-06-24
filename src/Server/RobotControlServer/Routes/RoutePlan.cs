@@ -29,7 +29,7 @@ public class RoutePlan: IRoute {
       // Add obstacles cell by cell
       foreach (var obj in parsedBody?.objects)
       {
-        planner.AddObstacleCell(obj[0], obj[1]);
+        planner.AddObstacleCell(obj[0], obj[1]); // Get x and y for every coordinate in the parsedbody array
       }
 
       List<Point> PlanPath = planner.PlanPath();
