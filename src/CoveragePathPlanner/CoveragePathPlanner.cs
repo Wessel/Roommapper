@@ -23,18 +23,12 @@ public class CoveragePathPlanner
     }
   }
 
-  public List<Point> PlanPath(List<Obstacle> obstacles)
+  public List<Point> PlanPath(List<Point> obstacles)
   {
     // Add obstacles to the grid
-    foreach (Obstacle obstacle in obstacles)
+    foreach (Point obstacle in obstacles)
     {
-      for (int x = obstacle.X; x < obstacle.X + obstacle.Width; x++)
-      {
-        for (int y = obstacle.Y; y < obstacle.Y + obstacle.Height; y++)
-        {
-          _cells[x + y * _width].IsObstacle = true;
-        }
-      }
+      _cells[obstacle.X + obstacle.Y * _width].IsObstacle = true;
     }
 
     // Initialize the start cell
@@ -114,15 +108,6 @@ public class CoveragePathPlanner
     // Manhattan distance heuristic
     return Math.Abs(cell.X - (_width - 1)) + Math.Abs(cell.Y - (_height - 1));
   }
-
-}
-
-public class Obstacle
-{
-  public int X { get; set; }
-  public int Y { get; set; }
-  public int Width { get; set; }
-  public int Height { get; set; }
 }
 
 public class Cell
