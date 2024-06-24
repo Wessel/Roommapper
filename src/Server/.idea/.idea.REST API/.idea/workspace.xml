@@ -58,13 +58,13 @@
       "cassandra"
     ],
     "rider.external.source.directories": [
-      "C:\\Users\\wesse\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
-      "C:\\Users\\wesse\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
-      "C:\\Users\\wesse\\AppData\\Local\\Symbols\\src"
+      "C:\\Users\\Wessel\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Wessel\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\Wessel\\AppData\\Local\\Symbols\\src"
     ]
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Project.Console">
+  <component name="RunManager">
     <configuration name="Console" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/Console/bin/Debug/net8.0/Console.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -117,6 +117,7 @@
       <workItem from="1717673464254" duration="1428000" />
       <workItem from="1718093417281" duration="4387000" />
       <workItem from="1718443610193" duration="8513000" />
+      <workItem from="1719219142765" duration="850000" />
     </task>
     <servers />
   </component>
