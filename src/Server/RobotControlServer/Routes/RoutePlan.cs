@@ -21,7 +21,6 @@ public class RoutePlan: IRoute {
       if (parsedBody?.objects == null) {
         throw new Exception("objectData is null");
       }
-
       // ParsedBody?.objects = [[0,1],[0,2],...]
 
       // New instance of CPP with a 500x500 grid || where 0,0 = top-left and 499, 499 = bottom-right
