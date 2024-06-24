@@ -7,14 +7,12 @@ public class CoveragePathPlanner
   private int _width;
   private int _height;
   private List<Cell> _cells;
-  private List<Obstacle> _obstacles;
 
   public CoveragePathPlanner(int width, int height)
   {
     _width = width;
     _height = height;
     _cells = new List<Cell>();
-    _obstacles = new List<Obstacle>();
 
     for (int x = 0; x < width; x++)
     {
@@ -25,36 +23,16 @@ public class CoveragePathPlanner
     }
   }
 
-  public void AddObstacleRectangle(int x, int y, int width, int height)
-  {
-    _obstacles.Add(new Obstacle { X = x, Y = y, Width = width, Height = height, IsRectangle = true });
-  }
-
-  public void AddObstacleCell(int x, int y)
-  {
-    _obstacles.Add(new Obstacle { X = x, Y = y, Width = 1, Height = 1, IsRectangle = false });
-  }
-
-  public List<Point> PlanPath()
+  public List<Point> PlanPath(List<Obstacle> obstacles)
   {
     // Add obstacles to the grid
-    foreach (Obstacle obstacle in _obstacles)
+    foreach (Obstacle obstacle in obstacles)
     {
-      foreach (Cell cell in _cells)
+      for (int x = obstacle.X; x < obstacle.X + obstacle.Width; x++)
       {
-        if (obstacle.IsRectangle)
+        for (int y = obstacle.Y; y < obstacle.Y + obstacle.Height; y++)
         {
-          if (cell.IsWithinObstacle(obstacle))
-          {
-            cell.IsObstacle = true;
-          }
-        }
-        else
-        {
-          if (cell.X == obstacle.X && cell.Y == obstacle.Y)
-          {
-            cell.IsObstacle = true;
-          }
+          _cells[x + y * _width].IsObstacle = true;
         }
       }
     }
@@ -79,7 +57,7 @@ public class CoveragePathPlanner
         while (currentCell != null)
         {
           path.Add(new Point(currentCell.X, currentCell.Y));
-          currentCell = currentCell.Parent!;
+          currentCell = currentCell.Parent;
         }
         return path;
       }
@@ -88,7 +66,7 @@ public class CoveragePathPlanner
       currentCell.IsVisited = true;
 
       // Explore the neighbors
-      foreach (Cell neighbor in currentCell.GetNeighbors(_cells))
+      foreach (Cell neighbor in GetNeighbors(currentCell))
       {
         if (!neighbor.IsVisited && !neighbor.IsObstacle)
         {
@@ -98,7 +76,7 @@ public class CoveragePathPlanner
           {
             neighbor.Cost = cost;
             neighbor.Parent = currentCell;
-            queue.Enqueue(neighbor, cost + currentCell.Heuristic(_width, _height));
+            queue.Enqueue(neighbor, cost + Heuristic(neighbor));
           }
         }
       }
@@ -107,6 +85,36 @@ public class CoveragePathPlanner
     // If no path is found, return an empty list
     return new List<Point>();
   }
+
+  private List<Cell> GetNeighbors(Cell cell)
+  {
+    List<Cell> neighbors = new List<Cell>();
+
+    for (int x = -1; x <= 1; x++)
+    {
+      for (int y = -1; y <= 1; y++)
+      {
+        if (x == 0 && y == 0) continue;
+
+        int neighborX = cell.X + x;
+        int neighborY = cell.Y + y;
+
+        if (neighborX >= 0 && neighborX < _width && neighborY >= 0 && neighborY < _height)
+        {
+          neighbors.Add(_cells[neighborX + neighborY * _width]);
+        }
+      }
+    }
+
+    return neighbors;
+  }
+
+  private double Heuristic(Cell cell)
+  {
+    // Manhattan distance heuristic
+    return Math.Abs(cell.X - (_width - 1)) + Math.Abs(cell.Y - (_height - 1));
+  }
+
 }
 
 public class Obstacle
@@ -115,7 +123,6 @@ public class Obstacle
   public int Y { get; set; }
   public int Width { get; set; }
   public int Height { get; set; }
-  public bool IsRectangle { get; set; }
 }
 
 public class Cell
@@ -125,40 +132,5 @@ public class Cell
   public bool IsObstacle { get; set; }
   public bool IsVisited { get; set; }
   public double Cost { get; set; }
-  public Cell? Parent { get; set; }
-
-  public bool IsWithinObstacle(Obstacle obstacle)
-  {
-    return X >= obstacle.X && X < obstacle.X + obstacle.Width &&
-           Y >= obstacle.Y && Y < obstacle.Y + obstacle.Height;
-  }
-
-  public IEnumerable<Cell> GetNeighbors(List<Cell> cells)
-  {
-    for (int x = -1; x <= 1; x++)
-    {
-      for (int y = -1; y <= 1; y++)
-      {
-        if (x == 0 && y == 0) continue;
-
-        int neighborX = X + x;
-        int neighborY = Y + y;
-
-        if (neighborX >= 0 && neighborX < _width && neighborY >= 0 && neighborY < _height)
-        {
-          int index = neighborX + neighborY * _width;
-          if (index >= 0 && index < cells.Count)
-          {
-            yield return cells[index];
-          }
-        }
-      }
-    }
-  }
-
-  public double Heuristic(int width, int height)
-  {
-    // Manhattan distance heuristic
-    return Math.Abs(X - (width - 1)) + Math.Abs(Y - (height - 1));
-  }
+  public Cell Parent { get; set; }
 }
