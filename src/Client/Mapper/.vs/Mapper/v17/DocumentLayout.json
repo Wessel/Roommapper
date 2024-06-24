@@ -1,7 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\tosl1\\source\\repos\\Roommapper\\src\\Client\\Mapper\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\Tom\\source\\repos\\Roommapper\\src\\Client\\Mapper\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{52F1797E-0731-43F4-AC45-68B7CF563336}|Mapper.csproj|c:\\users\\tom\\source\\repos\\roommapper\\src\\client\\mapper\\map.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52F1797E-0731-43F4-AC45-68B7CF563336}|Mapper.csproj|solutionrelative:map.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A753DACA-164C-417C-8AFD-D53AB375A53D}|..\\RobotController\\RobotController.csproj|c:\\users\\tom\\source\\repos\\roommapper\\src\\client\\robotcontroller\\ultrasonic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A753DACA-164C-417C-8AFD-D53AB375A53D}|..\\RobotController\\RobotController.csproj|c:\\users\\tom\\source\\repos\\roommapper\\src\\client\\robotcontroller\\measurement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3848B011-EF47-4B92-A214-69D439583C52}|..\\..\\CoveragePathPlanner\\CoveragePathPlanner.csproj|c:\\users\\tom\\source\\repos\\roommapper\\src\\coveragepathplanner\\coveragepathplanner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52F1797E-0731-43F4-AC45-68B7CF563336}|Mapper.csproj|c:\\users\\tom\\source\\repos\\roommapper\\src\\client\\mapper\\mapper.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{52F1797E-0731-43F4-AC45-68B7CF563336}|Mapper.csproj|solutionrelative:mapper.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +27,76 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Ultrasonic.cs",
+              "DocumentMoniker": "C:\\Users\\Tom\\source\\repos\\Roommapper\\src\\Client\\RobotController\\Ultrasonic.cs",
+              "RelativeDocumentMoniker": "..\\RobotController\\Ultrasonic.cs",
+              "ToolTip": "C:\\Users\\Tom\\source\\repos\\Roommapper\\src\\Client\\RobotController\\Ultrasonic.cs",
+              "RelativeToolTip": "..\\RobotController\\Ultrasonic.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-09T17:38:23.66Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Measurement.cs",
+              "DocumentMoniker": "C:\\Users\\Tom\\source\\repos\\Roommapper\\src\\Client\\RobotController\\Measurement.cs",
+              "RelativeDocumentMoniker": "..\\RobotController\\Measurement.cs",
+              "ToolTip": "C:\\Users\\Tom\\source\\repos\\Roommapper\\src\\Client\\RobotController\\Measurement.cs",
+              "RelativeToolTip": "..\\RobotController\\Measurement.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-09T17:35:55.332Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CoveragePathPlanner.cs",
+              "DocumentMoniker": "C:\\Users\\Tom\\source\\repos\\Roommapper\\src\\CoveragePathPlanner\\CoveragePathPlanner.cs",
+              "RelativeDocumentMoniker": "..\\..\\CoveragePathPlanner\\CoveragePathPlanner.cs",
+              "ToolTip": "C:\\Users\\Tom\\source\\repos\\Roommapper\\src\\CoveragePathPlanner\\CoveragePathPlanner.cs",
+              "RelativeToolTip": "..\\..\\CoveragePathPlanner\\CoveragePathPlanner.cs",
+              "ViewState": "AQIAAHoAAAAAAAAAAAAAwIYAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-09T17:34:13.83Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Mapper",
+              "DocumentMoniker": "C:\\Users\\Tom\\Source\\Repos\\Roommapper\\src\\Client\\Mapper\\Mapper.csproj",
+              "RelativeDocumentMoniker": "Mapper.csproj",
+              "ToolTip": "C:\\Users\\Tom\\Source\\Repos\\Roommapper\\src\\Client\\Mapper\\Mapper.csproj",
+              "RelativeToolTip": "Mapper.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-06-09T17:33:28.667Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Map.cs",
+              "DocumentMoniker": "C:\\Users\\Tom\\source\\repos\\Roommapper\\src\\Client\\Mapper\\Map.cs",
+              "RelativeDocumentMoniker": "Map.cs",
+              "ToolTip": "C:\\Users\\Tom\\source\\repos\\Roommapper\\src\\Client\\Mapper\\Map.cs",
+              "RelativeToolTip": "Map.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-09T17:33:29.25Z",
+              "EditorCaption": ""
             }
           ]
         }

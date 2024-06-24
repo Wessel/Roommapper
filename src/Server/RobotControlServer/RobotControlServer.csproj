@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CoveragePathPlanner\CoveragePathPlanner.csproj" />
     <ProjectReference Include="..\LibParse\LibParse.csproj" />
     <ProjectReference Include="..\LibServer\LibServer.csproj" />
   </ItemGroup>

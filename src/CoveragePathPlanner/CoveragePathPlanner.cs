@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 public class CoveragePathPlanner
@@ -6,12 +7,14 @@ public class CoveragePathPlanner
   private int _width;
   private int _height;
   private List<Cell> _cells;
+  private List<Obstacle> _obstacles;
 
   public CoveragePathPlanner(int width, int height)
   {
     _width = width;
     _height = height;
     _cells = new List<Cell>();
+    _obstacles = new List<Obstacle>();
 
     for (int x = 0; x < width; x++)
     {
@@ -22,16 +25,36 @@ public class CoveragePathPlanner
     }
   }
 
-  public List<Point> PlanPath(List<Obstacle> obstacles)
+  public void AddObstacleRectangle(int x, int y, int width, int height)
+  {
+    _obstacles.Add(new Obstacle { X = x, Y = y, Width = width, Height = height, IsRectangle = true });
+  }
+
+  public void AddObstacleCell(int x, int y)
+  {
+    _obstacles.Add(new Obstacle { X = x, Y = y, Width = 0, Height = 0, IsRectangle = false });
+  }
+
+  public List<Point> PlanPath()
   {
     // Add obstacles to the grid
-    foreach (Obstacle obstacle in obstacles)
+    foreach (Obstacle obstacle in _obstacles)
     {
       foreach (Cell cell in _cells)
       {
-        if (cell.IsWithinObstacle(obstacle))
+        if (obstacle.IsRectangle)
         {
-          cell.IsObstacle = true;
+          if (cell.IsWithinObstacle(obstacle))
+          {
+            cell.IsObstacle = true;
+          }
+        }
+        else
+        {
+          if (cell.X == obstacle.X && cell.Y == obstacle.Y)
+          {
+            cell.IsObstacle = true;
+          }
         }
       }
     }
@@ -56,7 +79,7 @@ public class CoveragePathPlanner
         while (currentCell != null)
         {
           path.Add(new Point(currentCell.X, currentCell.Y));
-          currentCell = currentCell.Parent;
+          currentCell = currentCell.Parent!;
         }
         return path;
       }
@@ -92,6 +115,7 @@ public class Obstacle
   public int Y { get; set; }
   public int Width { get; set; }
   public int Height { get; set; }
+  public bool IsRectangle { get; set; }
 }
 
 public class Cell
@@ -101,7 +125,7 @@ public class Cell
   public bool IsObstacle { get; set; }
   public bool IsVisited { get; set; }
   public double Cost { get; set; }
-  public Cell Parent { get; set; }
+  public Cell? Parent { get; set; }
 
   public bool IsWithinObstacle(Obstacle obstacle)
   {

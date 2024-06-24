@@ -2,7 +2,9 @@ using Cassandra;
 using LibParse.Json;
 using LibServer.Http;
 using LibServer.Router;
+using Newtonsoft.Json;
 using RobotControlServer.JsonClasses;
+using System.Drawing;
 
 namespace RobotControlServer.Routes;
 
@@ -21,8 +23,19 @@ public class RoutePlan: IRoute {
       }
 
       // ParsedBody?.objects = [[0,1],[0,2],...]
-      // Implement path planning algorithm
-      // var path;
+
+      // New instance of CPP with a 500x500 grid || where 0,0 = top-left and 499, 499 = bottom-right
+      CoveragePathPlanner planner = new CoveragePathPlanner(500, 500);
+
+      // Add obstacles cell by cell
+      foreach (var obj in parsedBody?.objects)
+      {
+        planner.AddObstacleCell(obj[0], obj[1]);
+      }
+
+      List<Point> PlanPath = planner.PlanPath();
+      // Don't know if this is needed here or just do List<Point> path = planner.PlanPath(obstacles);?
+      string path = JsonConvert.SerializeObject(PlanPath);
 
       // Return success message with the path
       return new HttpResponse($"{{\"message\":\"success\",\"path\":\"{path}\"}}");
