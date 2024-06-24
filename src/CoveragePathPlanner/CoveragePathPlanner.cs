@@ -144,9 +144,13 @@ public class Cell
         int neighborX = X + x;
         int neighborY = Y + y;
 
-        if (neighborX >= 0 && neighborX < cells.Count / cells[0].Y && neighborY >= 0 && neighborY < cells[0].Y)
+        if (neighborX >= 0 && neighborX < _width && neighborY >= 0 && neighborY < _height)
         {
-          yield return cells[neighborX + neighborY * cells.Count / cells[0].Y];
+          int index = neighborX + neighborY * _width;
+          if (index >= 0 && index < cells.Count)
+          {
+            yield return cells[index];
+          }
         }
       }
     }
