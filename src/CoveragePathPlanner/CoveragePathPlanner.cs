@@ -39,21 +39,17 @@ public class CoveragePathPlanner
     var queue = new PriorityQueue<Cell, double>();
     queue.Enqueue(startCell, 0);
 
+    List<Point> path = new List<Point>();
+
     while (queue.Count > 0)
     {
       // Dequeue the cell with the lowest cost
       Cell currentCell = queue.Dequeue();
 
-      // If the cell is the goal, construct the path
-      if (currentCell.X == _width - 1 && currentCell.Y == _height - 1)
+      // If the cell has not been visited before, add it to the path
+      if (!currentCell.IsVisited)
       {
-        List<Point> path = new List<Point>();
-        while (currentCell != null)
-        {
-          path.Add(new Point(currentCell.X, currentCell.Y));
-          currentCell = currentCell.Parent;
-        }
-        return path;
+        path.Add(new Point(currentCell.X, currentCell.Y));
       }
 
       // Mark the cell as visited
@@ -70,14 +66,13 @@ public class CoveragePathPlanner
           {
             neighbor.Cost = cost;
             neighbor.Parent = currentCell;
-            queue.Enqueue(neighbor, cost + Heuristic(neighbor));
+            queue.Enqueue(neighbor, cost);
           }
         }
       }
     }
 
-    // If no path is found, return an empty list
-    return new List<Point>();
+    return path;
   }
 
   private List<Cell> GetNeighbors(Cell cell)
@@ -101,12 +96,6 @@ public class CoveragePathPlanner
     }
 
     return neighbors;
-  }
-
-  private double Heuristic(Cell cell)
-  {
-    // Manhattan distance heuristic
-    return Math.Abs(cell.X - (_width - 1)) + Math.Abs(cell.Y - (_height - 1));
   }
 }
 

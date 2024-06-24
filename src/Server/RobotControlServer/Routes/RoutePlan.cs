@@ -26,13 +26,16 @@ public class RoutePlan: IRoute {
       // New instance of CPP with a 500x500 grid || where 0,0 = top-left and 499, 499 = bottom-right
       CoveragePathPlanner planner = new CoveragePathPlanner(500, 500);
 
-      // Add obstacles cell by cell
+      // Create obstacle cell list
+      List<Point> obstacles = new List<Point>();
+
+      // Add obstacle cells
       foreach (var obj in $"[{parsedBody?.objects}]".FromJson<int[][]>())
       {
-        planner.AddObstacleCell(obj[0], obj[1]); // Get x and y for every coordinate in the parsedbody array
+        obstacles.Add(new Point(obj[0], obj[1])); // Get x and y for every coordinate in the parsedbody array
       }
 
-      List<Point> PlanPath = planner.PlanPath();
+      List<Point> PlanPath = planner.PlanPath(obstacles);
       // Don't know if this is needed here or just do List<Point> path = planner.PlanPath(obstacles);?
       string path = JsonConvert.SerializeObject(PlanPath);
 
