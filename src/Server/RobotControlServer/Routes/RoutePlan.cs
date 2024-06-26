@@ -36,11 +36,14 @@ public class RoutePlan: IRoute {
       }
 
       List<Point> PlanPath = planner.PlanPath(obstacles);
-      // Don't know if this is needed here or just do List<Point> path = planner.PlanPath(obstacles);?
-      string path = JsonConvert.SerializeObject(PlanPath);
+      List<List<int>> points = new List<List<int>>();
+      foreach(var point in PlanPath) {
+        // push [x,y] to points
+        points.Add(new List<int> {point.X, point.Y});
+      }
 
       // Return success message with the path
-      return new HttpResponse($"{{\"message\":\"success\",\"path\":\"{path}\"}}");
+      return new HttpResponse($"{{\"message\":\"success\",\"path\":{points.ToJson()}}}");
     } catch (Exception ex) {
       // Return error message if failed for any reason
       return new HttpResponse($"{{\"message\": \"{ex.Message.Replace("\"", "\\\"")}\"}}", 400);
