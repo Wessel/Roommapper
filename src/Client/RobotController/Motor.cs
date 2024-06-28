@@ -24,7 +24,7 @@ namespace RobotController
         RedirectStandardOutput = true,
         RedirectStandardInput = true,
         UseShellExecute = false,
-        Arguments = "../stepper.py drive",
+        Arguments = "./stepper.py drive",
         FileName = "/usr/bin/python3"
       };
 
