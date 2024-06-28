@@ -4,16 +4,16 @@ using System.Text;
 
 namespace RobotController
 {
-  class Motor(int stepOne, int dirOne, int stepTwo, int dirTwo)
+  class Motor(int stepLeft, int dirLeft, int stepRight, int dirRight)
   {
     StringBuilder outputBuilder;
     ProcessStartInfo processStartInfo;
     Process process;
 
-    public int STEP_PIN1 { get; set; } = stepOne;
-    public int DIR_PIN1 { get; set; } = dirOne;
-    public int STEP_PIN2 { get; set; } = stepTwo;
-    public int DIR_PIN2 { get; set; } = dirTwo;
+    public int _stepLeft { get; set; } = stepLeft;
+    public int _dirLeft { get; set; } = dirLeft;
+    public int _stepRight { get; set; } = stepRight;
+    public int _dirRight { get; set; } = dirRight;
 
     public void Drive(bool direction, int steps)
     {
