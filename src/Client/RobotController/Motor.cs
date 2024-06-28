@@ -1,93 +1,69 @@
 using System;
 using System.Threading.Tasks;
-using System.Device.Gpio;
+using System.Diagnostics;
+using System.Text;
 
 namespace RobotController
 {
   class Motor
   {
-    public int STEP_PIN { get; set; }
-    public int DIR_PIN { get; set; }
-    public int ENABLE_PIN { get; set; }
-    private GpioPin stepPin;
-    private GpioPin directionPin;
-    private GpioPin enablePin;
-    private PinValue stepPinValue;
-    private PinValue directionPinValue;
-    private PinValue enablePinValue;
+    StringBuilder outputBuilder;
+    ProcessStartInfo processStartInfo;
+    Process process;
 
+    public int STEP_PIN1 { get; set; }
+    public int DIR_PIN1 { get; set; }
 
-    public Motor(int sTEP_PIN, int dIR_PIN)
+    public int STEP_PIN2 { get; set; }
+    public int DIR_PIN2 { get; set; }
+
+    public Motor(sTEP_PIN1, dIR_PIN1, sTEP_PIN2, dIR_PIN2)
     {
-      STEP_PIN = sTEP_PIN;
-      DIR_PIN = dIR_PIN;
+      this.STEP_PIN1 = sTEP_PIN1;
+      this.DIR_PIN1 = dIR_PIN1;
+
+      this.STEP_PIN2 = sTEP_PIN2;
+      this.DIR_PIN2 = dIR_PIN2;
+
     }
 
-    public Motor(int sTEP_PIN, int dIR_PIN, int eNABLE_PIN = 0)
+   public Drive(bool direction, int steps)
+   {
+outputBuilder = new StringBuilder();
+
+processStartInfo = new ProcessStartInfo();
+processStartInfo.CreateNoWindow = true;
+processStartInfo.RedirectStandardOutput = true;
+processStartInfo.RedirectStandardInput = true;
+processStartInfo.UseShellExecute = false;
+processStartInfo.Arguments = "/home/wouter/roommapper/src/Client/RobotController/stepper.py drive";
+processStartInfo.FileName = "/usr/bin/python3";
+
+process = new Process();
+process.StartInfo = processStartInfo;
+// enable raising events because Process does not raise events by default
+process.EnableRaisingEvents = true;
+// attach the event handler for OutputDataReceived before starting the process
+process.OutputDataReceived += new DataReceivedEventHandler
+(
+    delegate(object sender, DataReceivedEventArgs e)
     {
-      STEP_PIN = sTEP_PIN;
-      DIR_PIN = dIR_PIN;
-      ENABLE_PIN = eNABLE_PIN;
+        // append the new data to the data already read-in
+        outputBuilder.Append(e.Data);
     }
+);
+// start the process
+// then begin asynchronously reading the output
+// then wait for the process to exit
+// then cancel asynchronously reading the output
+process.Start();
+process.BeginOutputReadLine();
+process.WaitForExit();
+process.CancelOutputRead();
 
-    public void InitGPIO()
-    {
-      var gpio = new GpioController();
+// use the output
+string output = outputBuilder.ToString();
 
-      stepPin = gpio.OpenPin(STEP_PIN);
-      stepPin.SetPinMode(PinMode.Output);
-      stepPinValue = PinValue.Low;
-      stepPin.Write(stepPinValue);
+Console.WriteLine(output);
 
-      directionPin = gpio.OpenPin(DIR_PIN);
-      directionPin.SetPinMode(PinMode.Output);
-      directionPinValue = PinValue.Low;
-      directionPin.Write(directionPinValue);
-
-      if (ENABLE_PIN != 0)
-      {
-        enablePin = gpio.OpenPin(ENABLE_PIN);
-        enablePin.SetPinMode(PinMode.Output);
-        enablePinValue = PinValue.High;
-        enablePin.Write(enablePinValue);
-      }
-    }
-
-    private void OneStep()
-    {
-      var signal = Task.Run(async delegate { await Task.Delay(TimeSpan.FromMilliseconds(1)); });
-      var pavza = Task.Run(async delegate { await Task.Delay(TimeSpan.FromMilliseconds(1)); });
-
-      stepPinValue = PinValue.High;
-      stepPin.Write(stepPinValue);
-      signal.Wait();
-      stepPinValue = PinValue.Low;
-      stepPin.Write(stepPinValue);
-      pavza.Wait();
-    }
-
-    public void Step(int steps)
-    {
-      if (ENABLE_PIN != 0)
-      {
-        enablePinValue = PinValue.Low;
-        enablePin.Write(enablePinValue);
-      }
-
-      if (steps <= 0) { directionPinValue = PinValue.Low; }
-      else { directionPinValue = PinValue.High; }
-      directionPin.Write(directionPinValue);
-
-      for (int i = 0; i < Math.Abs(steps); i++)
-      {
-        OneStep();
-      }
-
-      if (ENABLE_PIN != 0)
-      {
-        enablePinValue = PinValue.High;
-        enablePin.Write(enablePinValue);
-      }
-    }
-  }
-}
+   }
