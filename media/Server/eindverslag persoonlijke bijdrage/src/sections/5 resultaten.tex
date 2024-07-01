@@ -1,0 +1,202 @@
+\section{Resultaten}
+\label{sec:resultaten}
+
+\subsection{Stappen voor het opbouwen van de API vanaf de grond af aan}
+Voor de ontwikkeling van de API zijn de volgende stappen doorlopen:
+\begin{enumerate}
+  \item \textbf{Behoeftenanalyse en Specificatie} --- De eerste stap was het
+  identificeren van de eisen voor de API. De volgende eisen zijn opgesteld na
+  aanleiding van de behoeftenanalyse:
+  \begin{enumerate}
+    \item \textbf{Basisfunctionaliteit}
+    \begin{itemize}
+      \item Ondersteunen van communicatie tussen de gebruiker en de robot.
+      \item Mogelijkheid om de robot te besturen en inzicht te krijgen via een
+      webinterface.
+    \end{itemize}
+    \item \textbf{Technische Specificaties}
+    \begin{itemize}
+      \item De API moet worden opgebouwd zonder het gebruik van externe libraries.
+      \item Gebruik van standaard HTTP-methoden (GET, POST, PUT, DELETE).
+      \item Het gebruik van JSON voor gegevensoverdracht.
+    \end{itemize}
+    \item \textbf{Flexibiliteit en Onderhoudbaarheid}
+    \begin{itemize}
+      \item Eenvoudige structuur die gemakkelijk te onderhouden is.
+      \item Flexibel genoeg om toekomstige toevoegingen en aanpassingen te
+      ondersteunen zonder dat de hele codebase herschreven moet worden.
+    \end{itemize}
+    \item \textbf{Gebruikersinterface}
+    \begin{itemize}
+      \item Weergave van verzamelde data in een overzichtelijke manier.
+      \item Presentatie van de mapping en de geplande route van de robot.
+      \item Mogelijkheid om diverse commando’s naar de robot te sturen.
+    \end{itemize}
+  \end{enumerate}
+  \item \textbf{Architectuurontwerp} --- Vervolgens zijn de toegestane request types (GET, POST, PUT, DELETE) gedefinieerd, samen met de benoemde routes en hun verwachte responses. Dit heeft geresulteerd in een gedetailleerd ontwerp van de API-structuur.
+  \begin{itemize}
+    \item \textbf{GET /api/v1/database/metadata}
+    \linebreak Geeft basisinformatie over de database terug.
+    \item \textbf{GET /api/v1/database}
+    \linebreak \textbf{Query Paramters:}
+    \begin{itemize}
+      \item ?id=$<$string$>$ --- De UUIDv4 van de gewensde map.
+      \item ?name=$<$string$>$ --- De naam van de gewensde map.
+      \item ?version=$<$int$>$ --- Het versienummer van de gewensde maps
+      \item ?all=$<$bool$>$ -- Laat alle maps zien
+    \end{itemize}
+    \textbf{Return Body:}
+    \begin{minted}[linenos,frame=leftline,framesep=3pt]{json}
+    [
+      {
+        "Id": "<string>",
+        "Name": "<string>",
+        "Version": "<int>",
+        "Objects": "<Array<Array<int, int>>"
+        "Date": "<DateTime>"
+      }, {...}
+    ]
+    \end{minted}
+    Geeft een lijst van alle maps terug, of een specifieke map op basis van de query parameters.
+    \item \textbf{POST /api/v1/database}
+    \linebreak \textbf{Request Body:}
+    \begin{minted}[linenos,frame=leftline,framesep=3pt]{json}
+    {
+      "name": "<string>",
+      "objects": "<Array<Array<int, int>>>"
+    }
+    \end{minted}
+    \textbf{Return Body:}
+    \begin{minted}[linenos,frame=leftline,framesep=3pt]{json}
+    {
+      "message": "<success|fail>",
+      "id": "<string>",
+    }
+    \end{minted}
+    Voegt een nieuwe map toe aan de database.
+    \item \textbf{DELETE /api/v1/database}
+    \linebreak \textbf{Query Paramters:}
+    \begin{itemize}
+      \item ?id=$<$string$>$ --- De UUIDv4 van de gewensde map.
+      \item ?name=$<$string$>$ --- De naam van de gewensde map.
+    \end{itemize}
+    Verwijdert de desbetreffende map uit de database.
+    \item \textbf{GET /api/v1/database/path}
+    \linebreak \textbf{Query Paramters:}
+    \begin{itemize}
+      \item ?id=$<$string$>$ --- De UUIDv4 van de gewensde route.
+    \end{itemize}
+    \textbf{Return Body:}
+    \begin{minted}[linenos,frame=leftline,framesep=3pt]{json}
+    {
+      "Id": "<string>",
+      "Objects": "<Array<Array<int, int>>"
+    }
+    \end{minted}
+    \item \textbf{POST /api/v1/database/path}
+    \linebreak \textbf{Request Body:}
+    \begin{minted}[linenos,frame=leftline,framesep=3pt]{json}
+    {
+      "id": "<string>",
+      "objects": "<Array<Array<int, int>>>"
+    }
+    \end{minted}
+    \textbf{Return Body:}
+    \begin{minted}[linenos,frame=leftline,framesep=3pt]{json}
+    {
+      "message": "<success|fail>",
+      "id": "<string>",
+    }
+    \end{minted}
+    Voegt een nieuwe geplande route toe aan de database.
+    \item \textbf{DELETE /api/v1/database/path}
+    \linebreak \textbf{Query Paramters:}
+    \begin{itemize}
+      \item ?id=$<$string$>$ --- De UUIDv4 van de gewensde route.
+    \end{itemize}
+    Verwijdert de desbetreffende route uit de database.
+    \item \textbf{POST /api/v1/database/path/plan}
+    \linebreak \textbf{Request Body:}
+    \begin{minted}[linenos,frame=leftline,framesep=3pt]{json}
+    {
+      "id": "<string>",
+      "objects": "<Array<Array<int, int>>>"
+    }
+    \end{minted}
+    \textbf{Return Body:}
+    \begin{minted}[linenos,frame=leftline,framesep=3pt]{json}
+    {
+      "message": "<success|fail>",
+      "id": "<string>",
+    }
+    \end{minted}
+    Voegt een nieuwe geplande route toe aan de database.
+    \item \textbf{POST /api/v1/roomba/control}
+    \linebreak \textbf{Request Body:}
+    \begin{minted}[linenos,frame=leftline,framesep=3pt]{json}
+    {
+      "command": "<string>"
+    }
+    \end{minted}
+    Proxies het commando naar de Roomba.
+  \end{itemize}
+  \item \textbf{UML ontwerpen} --- Een klassendiagram is gemaakt om de structuur
+  van de code te visualiseren. Dit diagram is te vinden in \autoref{fig:uml}.
+
+  De UML is opgedeeld in drie delen: de HTTP server, het data parsen en de endpoints.
+  De HTTP server is verantwoordelijk voor het ontvangen van de requests en het
+  doorsturen naar de juiste endpoint. Het data parsen zorgt ervoor dat de data
+  correct wordt verwerkt en opgeslagen. De endpoints zijn de verschillende routes
+  die de API aanbiedt en de bijbehorende acties die worden uitgevoerd.
+  \item \textbf{Implementatie} --- De API is opgebouwd volgens de specificaties
+  van de vorige stappen. Er is gebruik gemaakt van Csharp zonder externe libraries
+  om de functionaliteiten van de API te implementeren.
+  \item \textbf{Testen} --- Er zijn unit tests ontwikkeld voor alle componenten
+  die door de API worden gebruikt. Eventuele problemen die tijdens het testen naar
+  voren kwamen zijn verwerkt en opgelost.
+  \item \textbf{Onderhoud} --- Na implementatie is de API gemonitord en aangepast
+  op basis van feedback. Nieuwe functies zijn toegevoegd en bestaande functies
+  zijn verbeterd waar nodig, zonder de bestaande functionaliteit te breken.
+\end{enumerate}
+
+\subsection{Vergelijking van REST, SOAP, GraphQL, en gRPC op basis van gestelde criteria}
+De API architecturen zijn vergeleken op basis van de volgende criteria:
+prestaties, schaalbaarheid, flexibiliteit, onderhoudbaarheid, en geschiktheid
+voor de projectseisen.
+Hieronder volgt een samenvatting van de resultaten verzameld in
+\autoref{sec:theoretisch kader}.
+
+\subsubsection{REST}
+\begin{itemize}
+    \item \textbf{Voordelen}: REST heeft een eenvoudige structuur, maakt gebruik van standaard HTTP-methoden en JSON, en is gemakkelijk te implementeren. Het is goed schaalbaar door zijn stateless karakter.
+    \item \textbf{Nadelen}: REST kan overbodige data teruggeven, is minder geschikt voor complexe query’s, en biedt geen directe ondersteuning voor documentatie en real-time communicatie.
+\end{itemize}
+
+\subsubsection{SOAP}
+\begin{itemize}
+    \item \textbf{Voordelen}: SOAP biedt beveiligingsfuncties en ondersteuning
+    voor ACID-transacties. Het maakt gebruik van XML voor berichtuitwisseling en
+    ondersteunt verschillende transportprotocollen.
+    \item \textbf{Nadelen}: SOAP heeft een ingewikkeld formaat door de
+    XML-berichten, wat resulteert in een hogere complexiteit vergeleken met REST
+    waar meerdere typfouten op kunnen treden.
+\end{itemize}
+
+\subsubsection{GraphQL}
+\begin{itemize}
+    \item \textbf{Voordelen}: GraphQL biedt efficiëntie door de mogelijkheid om
+    specifieke sets data op te vragen, wat over-fetching en under-fetching
+    vermindert. Ook biedt GraphQL type controle door middel van schema's.
+    \item \textbf{Nadelen}: De serverimplementatie van GraphQL is complexer,
+    waardoor het moeilijker kan zijn om zonder externe libraries te implementeren.
+\end{itemize}
+
+\subsubsection{gRPC}
+\begin{itemize}
+    \item \textbf{Voordelen}: gRPC biedt hoge prestaties door het gebruik van
+    Protocol Buffers, en is zeer geschikt voor real-time communicatie door
+    HTTP/2. Het biedt ook functies zoals load balancing en monitoring.
+    \item \textbf{Nadelen}: gRPC is complexer op te zetten en te debuggen, en
+    heeft limitaties door het gebruik van HTTP/2, wat niet compatibel is met
+    oudere web browsers. Ook heeft gRPC net als GraphQL een complexe serverimplementatie.
+\end{itemize}

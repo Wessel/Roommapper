@@ -1,17 +1,6 @@
 \section{theoretisch Kader}
 \label{sec:theoretisch kader}
 
-\subsection{API-Architecturen}
-API's (Application Programming Interfaces) zijn onmisbare componenten in moderne
-software. Deze API's maken de communicatie tussen verschillende
-softwarecomponenten mogelijk.\cite{Souza_2012}
-
-Er zijn over de jaren vele verschillende manieren bedacht voor het ontwerpen
-en implementeren van API's, elk met zijn eigen voordelen en nadelen.
-\cite{Śliwa_Pańczyk_2021}
-
-Dit hoofdstuk zal vier van de meest gebruikte API architecturen bespreken.
-
 \subsection{RESTful (Representational State Transfer)}
 \label{ssec:rest}
 REST is een architectuur dat wordt gebruikt voor het communiceren van gegevens
@@ -29,10 +18,10 @@ web gebaseerde applicaties.
 \begin{enumerate}
   \item \textbf{Eenvoudige structuur} --- gebaseerd op standaard HTTP-methoden
    en JSON
-  \item \textbf{Makkelijke implementatie} --- meeste talen ondersteunen de basis
-   van webrequests en JSON serialisatie al
+  \item \textbf{Makkelijke implementatie} --- meeste programmeertalen ondersteunen
+   de basis van webrequests en JSON serialisatie al
   \item \textbf{Schaalbaarheid} --- RESTful API's zijn stateless en kunnen
-   eenvoudig horizontaal geschaald worden, echter zal de prestatie wel minder
+   eenvoudig horizontaal geschaald worden, echter zal de performance wel slechter
    zijn dan andere methodes zoals gRPC of GraphQL.\cite{Śliwa_Pańczyk_2021}
 \end{enumerate}
 
@@ -43,8 +32,8 @@ Echter heeft REST ook zijn nadelen, sommige hiervan zijn:
    en datastructuren (over-fetching en under-fetching)
   \item \textbf{Documentatie} --- Geen directe ondersteuning voor documentatie,
    schemas en typecontrole
-  \item \textbf{Real-time} --- Doordat de connectie niet levend wordt gehouden nadat
-   de aanvrag is afgehandeld is het minder geschikt voor real-time communicatie.
+  \item \textbf{Real-time} --- Doordat de connectie niet in stand wordt gehouden nadat
+   de aanvraag is afgehandeld is het minder geschikt voor real-time communicatie.
 \end{enumerate}
 
 \subsection{SOAP (Simple Object Access Protocol)}
@@ -54,7 +43,7 @@ SOAP is een protocol voor uitwisseling van informatie netzoals REST vermeld in
 SOAP maakt gebruik van XML voor het sturen van berichten en ondersteunt
 in tegenstelling tot REST verschillende transportprotocollen zoals
 HTTP en SMTP. SOAP biedt ook robuuste beveiligings- en transactiebeheerfuncties
-wat REST niet zo maar heeft.\cite{Śliwa_Pańczyk_2021,w3c}
+wat REST niet heeft.\cite{Śliwa_Pańczyk_2021,w3c}
 
 \subsubsection{Voordelen van SOAP}
 \begin{enumerate}
@@ -86,7 +75,7 @@ Voordelen van GraphQL:
      under-fetching waardoor er meer bandbreedte en rekenkracht wordt bespaard.\cite{Hartig}
     \item \textbf{Documentatie} --- Sterke typecontrole en introspectie door het
      gebruik van schemas.
-     \item \textbf{compatibiliteit} --- Ook al is het niet gewenst, GraphQL
+     \item \textbf{Compatibiliteit} --- Ook al is het niet gewenst, GraphQL
       is compatibiel met RESTful clients, hierdoor kan de implementatie vrij
       simpel zijn als de kracht van GraphQL niet nodig is.
 \end{enumerate}

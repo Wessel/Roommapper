@@ -325,7 +325,7 @@ version: 3.1.0
    nodigheid om de code te herschrijven al wil ik het in Next.js doen heb ik
    besloten om voor dit project
 
-** [XVI   06-06-2024] Updaten van de robot-side server code
+* [XVI   06-06-2024] Updaten van de robot-side server code
    Nu er een aantal bugs uit de servercode zijn gehaald zal ik de code op de
    robot nogmaals herschrijven maar nu met de nieuwe libraries. Ook zullen alle
    benodigde routes geimplementeert worden om de Server set af te maken.
@@ -343,7 +343,19 @@ version: 3.1.0
    overgestapt op het gebruik van gebruiker invulbare namen. Dit maakt het veel
    makkelijker om een bepaalde map te laten zien.
 
-* [XVII   15-06-2024] UML diagrammen bijgewerkt
+* [XVIII  24-06-2024] Pathfinding route toegevoegd aan API
+   Nadat dfe compatibiliteit voor routeplanning toegevoegd was, is er ook een
+   API endpoint voor geschreven:
+
+** POST /api/v1/path/plan
+   Deze route wordt gebruikt om een route te berekenen tussen twee punten.
+   - De route wordt berekend door middel van een A* algoritme, dit is een
+     algoritme die de kortste route tussen twee punten berekend.
+   - De route wordt vervolgens opgeslagen in de database, en de route wordt
+     teruggegeven aan de gebruiker.
+   - Als input body neemt deze route een array met objecten.
+
+* [XIX    15-06-2024] UML diagrammen bijgewerkt
    Nu de broncode van de Server compleet zijn heb ik de UML diagrammen
    bijgewerkt om overeen te komen met de broncode. Ook heb ik de desbetreffende
    modules bij elkaar gegroepeerd en de correcte lijntjes getrokken.

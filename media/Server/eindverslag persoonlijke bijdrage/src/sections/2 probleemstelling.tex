@@ -1,31 +1,70 @@
 \section{Probleemstelling}
 \label{sec: Probleemstelling}
 
-In het project is het belangrijk dat de gebruiker op afstand can communiceren
-met de mapping robot. De robot moet de commando's van de gebruiker kunnen
-ontvangen en uitvoeren.
+\subsection{Probleemanalyse}
+\label{ssec:probleemanalyse}
 
-De gebruiker moet ook kunnen zien wat de robot allemaal gemapt heeft, om
-eventueel in te grijpen als dit niet klopt.
+API's (\textit{Application Programming Interfaces}) zijn onmisbare componenten in moderne
+software. Door middel van een API in combinatie met een set van afspraken
+(een \textit{protocol}) is het mogelijk meerdere softwarecomponenten met elkaar
+te integreren. Deze API's maken de communicatie tussen verschillende
+softwarecomponenten mogelijk.\cite{Souza_2012}
 
-De robot vereist een structuele manier om deze gegevens uit te wisselen, en
-de optie om meerdere robots tegelijkertijd te besturen. De aandachtspunten
-hiervoor zijn:
+Er zijn over de jaren vele verschillende manieren bedacht voor het ontwerpen
+en implementeren van API's, elk met zijn eigen voordelen en nadelen.
+\cite{Śliwa_Pańczyk_2021} In dit onderzoek wordt er een vergelijking gesteld
+tussen vier verschillende API architecturen (REST, SOAP, GraphQL en gRPC)
+om te bepalen welke het meest geschikt is voor het project.
 
-\subsection{Toegankelijkheid van de diverse functies}
-Het interface dat de gebruiker ziet moet alle verzamelde data laten zien.
-Hij zal de mapping en de geplande route moeten presenteren in een overzichtelijke
-manier. Ook moet de robot diverse commando's vanuit de gebruiker kunnen ontvangen
-om zo de gewenste taken uit te kunnen voeren.
+Bij het kiezen van een API architectuur wordt er rekening gehouden met een bepaald
+aantal criteria. De API moet ontwikkelt worden zonder dat er externe libraries
+gebruikt worden. Dit betekent dat de API vanaf de grond af aan moet worden opgebouwd.
 
-\subsection{Schaalbaarheid en Prestaties}
-Naarmate het project groeit, moeten de communicatie kanalen tussen de verschillende
-componenten schaalbaar blijven zonder dat dit ten koste gaat van de prestaties.
-Dit betekent dat de gekozen API-oplossing in staat moet zijn om een toenemend aantal
-verzoeken af te handelen zonder vertragingen of systeemuitval.
+De API moet ook in staat zijn om de communicatie tussen de verschillende componenten
+van de robot te ondersteunen. Dit betekent dat de API de communicatie tussen de
+gebruiker en de robot moet ondersteunen, en de communicatie tussen de verschillende
+robots onderling.
 
-\subsection{Onderhoudbaarheid en Uitbreidbaarheid}
+De interface die wordt gepresenteerd aan de eindgebruiker dient alle verzamelde
+data te laten zien. Hij zal de mapping en de geplande route moeten presenteren
+in een overzichtelijke manier. Ook moet de robot diverse commando's vanuit de
+gebruiker kunnen ontvangen om zo de gewenste taken uit te kunnen voeren.
+
 De gekozen API-architectuur moet eenvoudig te onderhouden zijn, met een heldere
 en overzichtelijke structuur. De architectuur moet ook felxiebel genoeg zijn
-om toevoegingen en aanpassingen te ondersteunen zonder dat het codebase herschreven
+om toevoegingen en aanpassingen te ondersteunen zonder dat de codebase herschreven
 moet worden.
+
+De robot vereist een structuele manier om deze gegevens uit te wisselen, en
+de optie om meerdere robots tegelijkertijd te besturen.
+
+Een bijkomende eis vanuit de opdrachtgever is dat de software van het beroepsproduct
+object-georieënteerd is.
+
+\subsection{Vraagstelling}
+De hoofdvraag van dit onderzoek luidt:
+
+\begin{quote}
+  "\textit{Welke API architectuur is het beste geschikt voor de specifieke eisen
+  van het project, waarbij de communicatie tussen verschillende
+  softwarecomponenten, de ondersteuning van gebruikersinteracties, en de
+  flexibiliteit en onderhoudbaarheid van de code optimaal zijn?}"
+\end{quote}
+
+Om deze hoofdvraag te beantwoorden worden de volgende deelvragen geformuleerd:
+
+Voorafgaand aan het project zijn in \autoref{ssec:probleemanalyse} een aantal
+eisen opgesteld, zoals dat de API moet worden opgebouwd zonder het benut van
+externe libraries. De volgende deelvraag zal dit beantwoorden:
+
+\begin{quote}
+  "\textit{Welke stappen zijn nodig om de API vanaf de grond af aan op te bouwen?}"
+\end{quote}
+
+Ook zal er gekeken worden welk architectuur het beste bij het project past. Om
+dit te beantwoorden is de volgende deelvraag geformuleerd:
+
+\begin{quote}
+  "\textit{Hoe kunnen REST, SOAP, GraphQL, en gRPC worden vergeleken op basis
+  van de gestelde criteria?}"
+\end{quote}
