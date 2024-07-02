@@ -2,8 +2,6 @@ using Cassandra;
 using LibParse.Json;
 using LibServer.Http;
 using LibServer.Router;
-using Newtonsoft.Json;
-using RobotControlServer.JsonClasses;
 using System.Drawing;
 
 namespace RobotControlServer.Routes;
@@ -17,8 +15,7 @@ public class RoutePlan(ISession cassandraSession): IRoute {
     try {
       // Parse request body to Data object, give error if non-nullable fields
       // are null.
-      string id;
-      var parsedBody = request.Body?.FromJson<Data>();
+      string? id;
       if (!request.QueryString.TryGetValue("id", out id)) {
         throw new Exception("id is null");
       }
@@ -41,8 +38,7 @@ public class RoutePlan(ISession cassandraSession): IRoute {
       List<Point> obstacles = new List<Point>();
 
       // Add obstacle cells
-      foreach (var obj in $"[{map.GetValue<string>("objects")}]".FromJson<int[][]>()) // $"[{parsedBody?.objects}]".FromJson<int[][]>()
-      {
+      foreach (var obj in $"[{map.GetValue<string>("objects")}]".FromJson<int[][]>()) {
         obstacles.Add(new Point(obj[0], obj[1])); // Get x and y for every coordinate in the parsedbody array
       }
 

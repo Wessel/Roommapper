@@ -82,7 +82,8 @@ export default class MapCanvas extends React.Component {
       return;
     }
 
-    if (route || route.points.length > 0) {
+    console.log(route);
+    if (route && route.points.length > 0) {
       ctx.fillStyle = "#800000";
       route.points.forEach(point => {
         ctx.beginPath();
@@ -104,8 +105,7 @@ export default class MapCanvas extends React.Component {
   async HandlePlan() {
     if (this.state.currentMap.length < 1) return;
     const url = `${API_ENDPOINT}/database/path/plan?id=${this.state.currentMapId}`;
-    const data = await (await fetch(url)).json();
-    console.log(data);
+    await await fetch(url);
   }
 
   render() {
