@@ -60,8 +60,8 @@ const App = () => {
               <Controlfield />
               <div style={{ 'marginLeft': '50px' }}>
                 <MapCanvas
-                  width={600}
-                  height={600}
+                  width={500}
+                  height={500}
                   onError={Controlfield.handleError}
                   className='map-canvas'
                 />

@@ -14,7 +14,7 @@ internal static class Program {
       { "database", new RouteDatabase(cassandraSession) },
       { "database/metadata", new RouteMetadata(cassandraSession) },
       { "database/path", new RoutePath(cassandraSession) },
-      { "database/path/plan", new RoutePlan() },
+      { "database/path/plan", new RoutePlan(cassandraSession) },
       { "roomba/control", new RouteControl() }
     };
 

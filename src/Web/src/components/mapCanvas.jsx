@@ -12,11 +12,14 @@ export default class MapCanvas extends React.Component {
     // Due to `draw`'s asynchronous behavior, we need to bind `this` to the
     // handler functionin order for it to be able to be used inside of `render`.
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlePlan = this.handlePlan.bind(this);
     // Get a reference to the canvas element so we can draw on it
     this.canvasRef = React.createRef();
     this.state = {
       inputValue: '',
       searchOption: 'name',
+      currentMapId: undefined,
+      currentMap: [],
       canvasWidth: props.width   || this.defaultWidth,
       canvasHeight: props.height || this.defaultHeight,
     };
@@ -24,6 +27,10 @@ export default class MapCanvas extends React.Component {
 
   async handleSubmit() {
     await this.draw();
+  }
+
+  async handlePlan() {
+    await this.HandlePlan();
   }
 
   // This is a lifecycle method that is called after the component has been
@@ -42,8 +49,12 @@ export default class MapCanvas extends React.Component {
 
       // Combine all found sets into a singular array.
       const map = { 'id': data.length < 2 ? data[0].Id : undefined, 'points': [] };
-      if (!Array.isArray(data) || data.length < 1) return map;
+      console.log(data);
+      if (data.length < 1) return map;
+      // if (typeof data[0].Objects === 'string') return { id: data[0].Id, points: JSON.parse(data[0].Objects)};
       data.forEach((set) => set.Objects.forEach((coord) => map.points.push(coord)));
+
+      this.setState({ currentMapId: data[0].Id, currentMap: data[0].Objects });
 
       return map;
     } catch (ex) {
@@ -71,6 +82,15 @@ export default class MapCanvas extends React.Component {
       return;
     }
 
+    if (route || route.points.length > 0) {
+      ctx.fillStyle = "#800000";
+      route.points.forEach(point => {
+        ctx.beginPath();
+        ctx.arc(point[1], point[0], 1, 0, 2 * Math.PI);
+        ctx.fill();
+      });
+    }
+
     // Loop trough all coordinates, draw a dot at each point to form a top-down
     // view of the objects.
     ctx.fillStyle = "#000";
@@ -79,13 +99,13 @@ export default class MapCanvas extends React.Component {
       ctx.arc(point[1], point[0], 1, 0, 2 * Math.PI);
       ctx.fill();
     });
+  }
 
-    ctx.fillStyle = "#800000";
-    route.points.forEach(point => {
-      ctx.beginPath();
-      ctx.arc(point[1], point[0], 1, 0, 2 * Math.PI);
-      ctx.fill();
-    });
+  async HandlePlan() {
+    if (this.state.currentMap.length < 1) return;
+    const url = `${API_ENDPOINT}/database/path/plan?id=${this.state.currentMapId}`;
+    const data = await (await fetch(url)).json();
+    console.log(data);
   }
 
   render() {
@@ -110,6 +130,7 @@ export default class MapCanvas extends React.Component {
             disabled={searchOption === 'all'}
           />
           <Button type="default" htmlType="submit">Update Map</Button>
+          <Button type="default" onClick={this.handlePlan}>Plan</Button>
         </Form>
         <div>
           <canvas

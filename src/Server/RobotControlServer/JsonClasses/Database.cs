@@ -16,3 +16,10 @@ public class RowData {
   public string Name;
   public DateTime Date;
 }
+public class PathData {
+  public string Id;
+  public string Objects;
+  public int Version;
+  public string Name;
+  public DateTime Date;
+}

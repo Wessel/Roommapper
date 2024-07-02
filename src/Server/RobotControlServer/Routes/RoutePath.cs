@@ -136,7 +136,7 @@ public class RoutePath(ISession cassandraSession): IRoute {
   private string RowsToString(RowSet rowSet) {
     return rowSet.Select(row => new RowData {
       Id = row.GetValue<Guid>("id").ToString(),
-      Objects = $"[{row.GetValue<string>("path")}]".FromJson<int[][]>()
+      Objects = row.GetValue<string>("path").FromJson<int[][]>(),
     }).ToList().ToJson();
   }
 }

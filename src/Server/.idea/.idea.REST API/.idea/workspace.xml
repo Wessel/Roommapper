@@ -7,7 +7,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79f184c3-e88e-45be-9116-5fa813562754" name="Changes" comment="" />
+    <list default="true" id="79f184c3-e88e-45be-9116-5fa813562754" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../CoveragePathPlanner/bin/Debug/net8.0/CoveragePathPlanner.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../CoveragePathPlanner/bin/Debug/net8.0/CoveragePathPlanner.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CoveragePathPlanner/bin/Debug/net8.0/CoveragePathPlanner.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../CoveragePathPlanner/bin/Debug/net8.0/CoveragePathPlanner.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.REST API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.REST API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibParse/bin/Debug/net8.0/LibParse.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LibParse/bin/Debug/net8.0/LibParse.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibParse/bin/Debug/net8.0/LibParse.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/LibParse/bin/Debug/net8.0/LibParse.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibServer/bin/Debug/net8.0/LibServer.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LibServer/bin/Debug/net8.0/LibServer.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibServer/bin/Debug/net8.0/LibServer.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/LibServer/bin/Debug/net8.0/LibServer.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotControlServer/JsonClasses/Database.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RobotControlServer/JsonClasses/Database.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotControlServer/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RobotControlServer/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotControlServer/Routes/RoutePlan.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RobotControlServer/Routes/RoutePlan.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web/src/components/mapCanvas.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/src/components/mapCanvas.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -119,6 +132,8 @@
       <workItem from="1718443610193" duration="8513000" />
       <workItem from="1719219142765" duration="1400000" />
       <workItem from="1719253641573" duration="1910000" />
+      <workItem from="1719827237918" duration="3979000" />
+      <workItem from="1719913000122" duration="2097000" />
     </task>
     <servers />
   </component>
