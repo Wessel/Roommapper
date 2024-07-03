@@ -12,14 +12,14 @@ direction1 = 23
 step1 = 22
 enable1 = 24
 
-direction2 = 14
-step2 = 15
-enable2 = 18
+direction2 = 20
+step2 = 26
+enable2 = 21
 
 GPIO.setup(enable1, GPIO.OUT, initial=GPIO.HIGH)
 GPIO.setup(enable2, GPIO.OUT, initial=GPIO.HIGH)
-GPIO.output(enable1, GPIO.HIGH)
-GPIO.output(enable2, GPIO.HIGH)
+# GPIO.output(enable1, GPIO.HIGH)
+# GPIO.output(enable2, GPIO.HIGH)
 
 def run_motor1(direction, steps):
     direction = not direction
@@ -60,11 +60,12 @@ def drive(direction, steps):
     # Wait for both threads to complete
     thread1.join()
     thread2.join()
+    
+        # sleep to stop inertia
+    time.sleep(0.5)
 
     GPIO.output(enable1, GPIO.HIGH)
     GPIO.output(enable2, GPIO.HIGH)
-
-    GPIO.cleanup()
     print("Driven succesfully")
     
 def turn(direction, steps):
@@ -101,11 +102,15 @@ def turn(direction, steps):
     # Wait for both threads to complete
     thread1.join()
     thread2.join()
+    
+    # sleep to stop inertia
+    time.sleep(0.5)
 
     GPIO.output(enable1, GPIO.HIGH)
     GPIO.output(enable2, GPIO.HIGH)
+    print("Turned succesfully")
 
-    GPIO.cleanup()
+    # GPIO.cleanup()
     
 
 if __name__ == "__main__":
