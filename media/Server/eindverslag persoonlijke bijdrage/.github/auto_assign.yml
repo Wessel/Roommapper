@@ -1,5 +1,0 @@
-addReviewers: true
-reviewers:
-  - {{project.reviewers}}
-numberOfReviewers: 0
-runOnDraft: true
